@@ -1,0 +1,23 @@
+2015-10-01T16:05:03.733458873 0.219202s notice: Recursively removing directory /home/alexb/home_owner_center/rethinkdb_data/tmp
+2015-10-01T16:05:03.746055049 0.231802s notice: Initializing directory /home/alexb/home_owner_center/rethinkdb_data
+2015-10-01T16:05:03.746209612 0.231951s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/alexb/home_owner_center/rethinkdb_data' did not already exist or is empty.)
+2015-10-01T16:05:03.746253907 0.231995s notice: Running rethinkdb 2.1.4~0vivid (GCC 4.9.2)...
+2015-10-01T16:05:03.777813433 0.263560s notice: Running on Linux 3.19.0-22-generic x86_64
+2015-10-01T16:05:03.777942456 0.263684s notice: Loading data from directory /home/alexb/home_owner_center/rethinkdb_data
+2015-10-01T16:05:03.866007583 0.351752s info: Automatically using cache size of 5747 MB
+2015-10-01T16:05:03.867210429 0.352952s notice: Listening for intracluster connections on port 29015
+2015-10-01T16:05:03.871640863 0.357383s notice: Listening for client driver connections on port 28015
+2015-10-01T16:05:03.871914036 0.357656s notice: Listening for administrative HTTP connections on port 8080
+2015-10-01T16:05:03.871919796 0.357661s notice: Listening on addresses: 127.0.0.1, 127.0.1.1, ::1
+2015-10-01T16:05:03.871923378 0.357665s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2015-10-01T16:05:03.871927115 0.357669s notice: Server ready, "server_thebaronroom_com_h5l" 5907ecf2-62ac-45af-8d97-7a0520c5185c
+2015-10-01T16:05:10.601225228 7.086967s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2015-10-01T16:05:10.601400251 7.087142s notice: Shutting down client connections...
+2015-10-01T16:05:10.601808496 7.087550s notice: All client connections closed.
+2015-10-01T16:05:10.601821081 7.087562s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2015-10-01T16:05:10.602175657 7.087917s notice: Storage engine shut down.
+2015-10-01T16:05:23.032305526 0.269266s notice: Running rethinkdb 2.1.4~0vivid (GCC 4.9.2)...
+2015-10-01T16:05:23.062810096 0.299746s notice: Running on Linux 3.19.0-22-generic x86_64
+2015-10-01T16:05:23.062949122 0.299880s notice: Loading data from directory /home/alexb/home_owner_center/rethinkdb_data
+2015-10-01T16:05:23.151573027 0.388506s info: Automatically using cache size of 5702 MB
+2015-10-01T16:05:23.153828176 0.390759s error: TCP socket creation failed for port 29015: Address already in use.

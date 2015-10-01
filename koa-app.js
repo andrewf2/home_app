@@ -29,8 +29,6 @@ app.use(function *(next) {
 
 app.use(router.routes());
 
-router.get('/', function *() {
-    this.body = config.siteName;
-});
+router.get('/', require('./handler/test'));
 
 module.exports = app;
