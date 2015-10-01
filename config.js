@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 /* API config */
 
 exports.httpPort = 3020;
