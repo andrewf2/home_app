@@ -2,7 +2,7 @@ var Validator = require('jsonschema').Validator;
 var v = new Validator();
  
   // Address, to be embedded on Person 
-  var builderSchema = {
+  var userSchema = {
     "id": {"type": "integer"},
     "type": "object",
     "properties": {
@@ -11,21 +11,14 @@ var v = new Validator();
         "customer": {"type": "object"}
       },
       "name": {"type": "string"},
+      "email-address":{"type":"string"},
+      "house":{"type":"object"},
+      "password":{"type":"string"}
     },
-    "required": ["name"]
+    "required": ["name","email-address","password"]
   };
   
-  var customerSchema = {
-    "id":{"type": "integer"},
-    "type":"object",
-    "properties":{
-      "name":{"type":"string"},
-      "email_address":{"type":"string"},
-      "house":{"type":"object"}
-    },
-    
-    "required":["name","email_address","house"]
-  };
+  
   
   var houseSchema = {
     "id":{"type":"integer"},
@@ -38,7 +31,7 @@ var v = new Validator();
         "trusses":false,
         "roofSheeted":false,
         "roofShingled":false,
-        "brick_work":false,
+        "brick-work":false,
         "siding":false,
         "electricalWork":false,
         "insulation":false,
@@ -49,9 +42,10 @@ var v = new Validator();
         "cabinets":false,
         "interiorPaint":false,
         "sodLaid":false
-        
-         
-      },
+  
+      }
+      
+      
       
     }
   }
