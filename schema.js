@@ -11,11 +11,11 @@ var v = new Validator();
         "customer": {"type": "object"}
       },
       "name": {"type": "string"},
-      "email-address":{"type":"string"},
+      "emailAddress":{"type":"string"},
       "house":{"type":"object"},
       "password":{"type":"string"}
     },
-    "required": ["name","email-address","password"]
+    "required": ["name","emailAddress","password"]
   };
   
   
@@ -31,7 +31,7 @@ var v = new Validator();
         "trusses":false,
         "roofSheeted":false,
         "roofShingled":false,
-        "brick-work":false,
+        "brickWork":false,
         "siding":false,
         "electricalWork":false,
         "insulation":false,
