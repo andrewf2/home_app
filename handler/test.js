@@ -8,7 +8,7 @@ module.exports = function *() {
 
     var response;
     try {
-        response = yield r.dbCreate('testDb').run();
+        response = yield r.dbCreate('home_owner_center').run();
     }
     catch (error) {
         // db prolly ardy exists

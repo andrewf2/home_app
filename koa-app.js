@@ -1,34 +1,36 @@
 'use strict';
 
 var koa = require('koa');
-var router = require('koa-router')();
 var koaBody = require('koa-body')();
 var config = require('./config');
-
-var koaStatic = require('koa-static');
-
+var serve = require('koa-static');
 var app = koa();
+var fs = require('fs');
+var koa = require('koa');
+var Router = require('koa-router');
 
-app.use(function *(next) {
-    var start = new Date();
-    var err;
+var router = new Router();
 
-    try {
-        yield next;
-    }
-    catch (e) {
-        err = e;
-    }
-
-    var elapsed = new Date() - start;
-
-    console.log('%s %s %s - %s', this.method, err ? 500 : this.res.statusCode, this.url, elapsed);
-
-    if (err) throw err;
+router.get('/', function *(next) {
+  this.body = yield readFileThunk(__dirname + '/client/app/index.html');
 });
+
 
 app.use(router.routes());
 
-router.get('/', require('./handler/test'));
+var readFileThunk = function(src) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
+      if(err) return reject(err);
+      resolve(data);
+    });
+  });
+}
+
+
+
+
+
+ 
 
 module.exports = app;
