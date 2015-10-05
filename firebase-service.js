@@ -7,6 +7,11 @@ var Firebase = function(){
   };
   
   
+  this.searchByModel = function(model){
+    return this.firebaseRef() + "/" + model
+  }
+  
+  
 };
 
 exports.instantiate = function(){
