@@ -4,10 +4,10 @@ var koa = require('koa');
 var koaBody = require('koa-body')();
 var config = require('./config');
 var serve = require('koa-static');
-var app = koa();
 var fs = require('fs');
-var koa = require('koa');
 var router = require('koa-router')();
+
+var app = koa();
 
 app.use(function *(next) {
     var start = new Date();
@@ -27,21 +27,10 @@ app.use(function *(next) {
     if (err) throw err;
 });
 
-router.get('/', function *(next) {
-  this.body = yield readFileFunction(__dirname + '/client/app/index.html');
-});
+app.use(serve(__dirname + '/client/app'));
 
 router.get('/test', require('./handler/test.js'));
 
 app.use(router.routes());
-
-var readFileFunction = function(src) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
-      if(err) return reject(err);
-      resolve(data);
-    });
-  });
-}
 
 module.exports = app;
