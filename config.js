@@ -1,6 +1,6 @@
 'use strict';
 /* API config */
 
-exports.httpPort = 3020;
+exports.httpPort = 8080;
 exports.siteName = 'home_owner_center';
 
