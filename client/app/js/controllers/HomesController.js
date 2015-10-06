@@ -7,9 +7,9 @@
  */
 function HomesController($scope,$http) {
 
-  $scope.homes = "empty"
+  $scope.homes;
    $http.get("/homes")
-    .success(function(response) {$scope.homes = response.homes;});
+    .success(function(response) {$scope.homes = response;});
 
 }
 
