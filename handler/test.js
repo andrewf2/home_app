@@ -4,17 +4,28 @@ var r = require('rethinkdbdash')({
     pool: true
 });
 
+var dummyData = require("../seed.js");
+
+
+
+
 module.exports = function *() {
-
-    var response;
-    try {
-        response = yield r.dbCreate('home_owner_center').run();
+    try{
+    var hoc = r.db('home_owner_center');
+    yield hoc.table('users').delete().run()
+    yield hoc.table('homes').delete().run()
+    yield hoc.table('users').insert(dummyData.customer).run()
+    yield hoc.table('users').insert(dummyData.builder).run()
+    yield hoc.table('homes').insert(dummyData.house).run()
     }
-    catch (error) {
-        // db prolly ardy exists
+    catch (e){
+        console.log(e)
+        
     }
 
-    var dbList = yield r.dbList().run();
-
-    this.body = {dbList: dbList};
+    this.body = {
+      users: yield r.db('home_owner_center').table('users').run(),
+      homes: yield r.db('home_owner_center').table('homes').run()
+      
+    };
 };

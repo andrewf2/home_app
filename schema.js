@@ -10,12 +10,13 @@ var v = new Validator();
         "type": "array",
         "customer": {"type": "object"}
       },
-      "name": {"type": "string"},
+      "firstName": {"type": "string"},
+      "lastName":{"type": "string"},
       "emailAddress":{"type":"string"},
-      "house":{"type":"object"},
+      "houseId":{"type":"integer"},
       "password":{"type":"string"}
     },
-    "required": ["name","emailAddress","password"]
+    "required": ["firstName","lastName","emailAddress","password"]
   };
   
   
@@ -44,9 +45,8 @@ var v = new Validator();
         "sodLaid":false
   
       }
-      
-      
-      
+ 
     }
   }
+  
   

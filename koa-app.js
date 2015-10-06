@@ -1,13 +1,16 @@
 'use strict';
-
+var r = require('rethinkdbdash')({
+    pool: true
+});
 var koa = require('koa');
 var koaBody = require('koa-body')();
 var config = require('./config');
 var serve = require('koa-static');
-var fs = require('fs');
 var router = require('koa-router')();
-
 var app = koa();
+
+
+
 
 app.use(function *(next) {
     var start = new Date();
@@ -30,6 +33,28 @@ app.use(function *(next) {
 app.use(serve(__dirname + '/client/app'));
 
 router.get('/test', require('./handler/test.js'));
+
+router.get('/homes', function*(){
+   this.body = yield r.db('home_owner_center').table('homes').run()
+})
+
+router.get('/homes/:id',function*(){
+    var id = this.params.id
+    this.body = yield r.db('home_owner_center').table("homes").filter({
+      id: parseInt(id)
+    }).run();
+})
+
+router.get('/users',function*(){
+    this.body = yield r.db('home_owner_center').table('users').run()
+})
+
+router.get('/users/:id',function*(){
+    var id = this.params.id
+    this.body = yield r.db('home_owner_center').table("users").filter({
+      id: parseInt(id)
+    }).run();
+})
 
 app.use(router.routes());
 
