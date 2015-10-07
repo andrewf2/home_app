@@ -3,12 +3,13 @@
 /**
  * @ngInject
  */
-function HomesController($scope,$http) {
+function HomesController($scope,$http,$routeParams,HomeService) {
 
-  $scope.homes;
-   $http.get("/homes")
-    .success(function(response) {$scope.homes = response;});
-
+   HomeService.all().then(function(promise){
+    $scope.homes = promise.data
+    console.log($scope.homes)
+   })
+ 
 }
 
 window.app.controller('HomesController', HomesController);

@@ -15,10 +15,10 @@
       controller: "HomesController"
      
     }
-  ).when("/home/:id",
+  ).when("/homes/:id",
     {
       templateUrl: "/views/home.html",
-      controller: "HomesController"
+      controller: "HomeController"
     }
     
   ).otherwise('/');
