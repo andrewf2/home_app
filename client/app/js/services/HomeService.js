@@ -5,7 +5,6 @@ window.app.service('HomeService',function($http){
   }
   
   this.find = function(id){
-    var home;
     return $http.get("/homes/"+ id).success(function(response) {return response});
   }
   
@@ -14,4 +13,5 @@ window.app.service('HomeService',function($http){
     return $http.delete("/homes/"+ id).success(function(response) {return response});
     
   }
+
 })
