@@ -109,9 +109,9 @@ var r = require('rethinkdbdash')({
 
 function *run(){
    try{
-    yield r.dbDrop('home_owner_center').run()
+    
     yield r.dbCreate('home_owner_center').run();
-    var hoc = yield r.db('home_owner_center');
+    var hoc = r.db('home_owner_center');
     yield hoc.tableCreate('users', {primaryKey: "id"})
     yield hoc.tableCreate('homes',{primaryKey:"id"})
     yield hoc.table('users').insert(customer).run();
@@ -120,6 +120,7 @@ function *run(){
     yield hoc.table('homes').insert(house).run();
     yield hoc.table('homes').insert(house2).run();
     yield hoc.table('homes').insert(house3).run();
+  
   
  
     }
