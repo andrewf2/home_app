@@ -109,6 +109,7 @@ var r = require('rethinkdbdash')({
 
 function *run(){
    try{
+    yield r.dbDrop('home_owner_center').run()
     yield r.dbCreate('home_owner_center').run();
     var hoc = yield r.db('home_owner_center');
     yield hoc.tableDrop("users").run();
