@@ -109,21 +109,23 @@ var r = require('rethinkdbdash')({
 
 function *run(){
    try{
-    
-    yield r.dbCreate('home_owner_center').run();
-    var hoc = r.db('home_owner_center');
-    yield hoc.tableCreate('users', {primaryKey: "id"})
-    yield hoc.tableCreate('homes',{primaryKey:"id"})
-    yield hoc.table('users').insert(customer).run();
-    yield hoc.table('users').insert(customer2).run();
-    yield hoc.table('users').insert(builder).run();
-    yield hoc.table('homes').insert(house).run();
-    yield hoc.table('homes').insert(house2).run();
-    yield hoc.table('homes').insert(house3).run();
-  
-  
- 
-    }
+     yield r.dbDrop('home_owner_center').run().then(function(){
+       r.dbCreate('home_owner_center').run().then(function(){
+         r.db('home_owner_center').tableCreate('users', {primaryKey: "id"}).run().then(function(){
+          r.db('home_owner_center').tableCreate('homes', {primaryKey: "id"}).run().then(function(){
+             r.db('home_owner_center').table('users').insert(customer).run();
+             r.db('home_owner_center').table('users').insert(customer2).run();
+             r.db('home_owner_center').table('users').insert(builder).run();
+             r.db('home_owner_center').table('homes').insert(house).run();
+             r.db('home_owner_center').table('homes').insert(house2).run();
+             r.db('home_owner_center').table('homes').insert(house3).run();
+             console.log("query finished")
+             
+           })
+         })
+       })
+    })
+  }
     catch (e){
         console.log(e)
          
@@ -131,10 +133,8 @@ function *run(){
     }
     
 }
+ run().next()
 
-for(var v of run()){
-  v
-}
 
 
 
