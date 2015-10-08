@@ -112,12 +112,8 @@ function *run(){
     yield r.dbDrop('home_owner_center').run()
     yield r.dbCreate('home_owner_center').run();
     var hoc = yield r.db('home_owner_center');
-    yield hoc.tableDrop("users").run();
-    yield hoc.tableDrop("homes").run();
     yield hoc.tableCreate('users', {primaryKey: "id"})
     yield hoc.tableCreate('homes',{primaryKey:"id"})
-    yield hoc.table('users').delete().run();
-    yield hoc.table('homes').delete().run();
     yield hoc.table('users').insert(customer).run();
     yield hoc.table('users').insert(customer2).run();
     yield hoc.table('users').insert(builder).run();
