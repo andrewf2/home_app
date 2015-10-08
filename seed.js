@@ -105,12 +105,8 @@ var r = require('rethinkdbdash')({
     pool: true
 });
 
-
-
-function *run(){
-   try{
-     yield r.dbDrop('home_owner_center').run().then(function(){
-       r.dbCreate('home_owner_center').run().then(function(){
+function seed(){
+   r.dbCreate('home_owner_center').run().then(function(){
          r.db('home_owner_center').tableCreate('users', {primaryKey: "id"}).run().then(function(){
           r.db('home_owner_center').tableCreate('homes', {primaryKey: "id"}).run().then(function(){
              r.db('home_owner_center').table('users').insert(customer).run();
@@ -124,14 +120,23 @@ function *run(){
            })
          })
        })
+}
+
+function *run(){
+  if(r.dbList().contains('home_owner_center')){
+   try{
+     yield r.dbDrop('home_owner_center').run().then(function(){
+      seed();
     })
   }
     catch (e){
         console.log(e)
-         
-        
+     
     }
     
+  }else{
+    seed();
+  }
 }
  run().next()
 
