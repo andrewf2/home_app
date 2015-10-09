@@ -1,11 +1,12 @@
 var SuperModel =  require('./super-model.js')();
-var Home = Object.create(SuperModel);
-Home.tableName = "homes"
+var User = Object.create(SuperModel);
+User.tableName = "users"
 module.exports = function(){
   
-  return Home
+  return User
   
 }
+
 
 
 

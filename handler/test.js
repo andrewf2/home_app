@@ -4,7 +4,7 @@ var r = require('rethinkdbdash')({
     pool: true
 });
 
-var dummyData = require("../seed.js");
+
 
 
 
