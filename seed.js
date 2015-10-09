@@ -4,7 +4,6 @@
 
   var customer = {
     id: 1,
-    customers: [],
     firstNamename:"John",
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
@@ -15,7 +14,6 @@
   
   var customer2 = {
     id: 3,
-    customers: [],
     firstNamename:"Jimmy Eat",
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
@@ -29,6 +27,15 @@
     firstName: "Bob",
     lastName: "Builder",
     emailAddress:"bobthebuilder@gmail.com",
+    password:"password"
+  }
+  
+  var customer3 = {
+    id: 4,
+    firstNamename:"Ben",
+    lastName:"Dover",
+    emailAddress:"ben@gmail.com",
+    homeId:3,
     password:"password"
   }
   
@@ -112,6 +119,7 @@ function seed(){
              r.db('home_owner_center').table('users').insert(customer).run();
              r.db('home_owner_center').table('users').insert(customer2).run();
              r.db('home_owner_center').table('users').insert(builder).run();
+             r.db('home_owner_center').table('users').insert(customer3).run();
              r.db('home_owner_center').table('homes').insert(house).run();
              r.db('home_owner_center').table('homes').insert(house2).run();
              r.db('home_owner_center').table('homes').insert(house3).run();

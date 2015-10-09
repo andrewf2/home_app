@@ -43,7 +43,7 @@ router.get('/homes', function*(){
 router.get('/homes/:id',function*(){
     var id = this.params.id
     var home = yield Home.find(id);
-    home.customers = yield Home.getCustomers(id)
+    home[0].customers = yield Home.getCustomers(id)
     this.body = home
     console.log(home)
     
