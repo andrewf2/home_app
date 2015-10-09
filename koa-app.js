@@ -8,7 +8,7 @@ var config = require('./config');
 var serve = require('koa-static');
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
-var User = require('./model/user.js')()
+var User = require('./model/user.js')();
 var app = koa();
 
 
@@ -42,7 +42,11 @@ router.get('/homes', function*(){
 
 router.get('/homes/:id',function*(){
     var id = this.params.id
-    this.body = yield Home.find(id);
+    var home = yield Home.find(id);
+    home.customers = yield Home.getCustomers(id)
+    this.body = home
+    console.log(home)
+    
 })
 
 router.get('/users',function*(){

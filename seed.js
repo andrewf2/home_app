@@ -8,7 +8,7 @@
     firstNamename:"John",
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
-    houseId:1,
+    homeId:1,
     password:"password"
   }
    
@@ -19,7 +19,7 @@
     firstNamename:"Jimmy Eat",
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
-    houseId:2,
+    homeId:2,
     password:"password"
   }
   
