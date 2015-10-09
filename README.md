@@ -8,3 +8,5 @@ Install RethinkDB (on Ubuntu)
     wget -qO- http://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
     sudo apt-get update
     sudo apt-get install rethinkdb
+    
+Once RethinkDB is installed, run `gulp seed` and wait for query to finish.
