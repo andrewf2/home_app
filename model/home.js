@@ -5,7 +5,7 @@ Home.getCustomers = function *(id){
   var query =  yield SuperModel.db.table("users").filter({
         homeId: parseInt(id)
       }).run()
-  return query[0]
+  return query
   
 }
 module.exports = function(){
