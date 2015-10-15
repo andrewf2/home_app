@@ -4,7 +4,7 @@
 
   var customer = {
     id: 1,
-    firstNamename:"John",
+    firstName:"John",
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
     homeId:1,
@@ -14,7 +14,7 @@
   
   var customer2 = {
     id: 3,
-    firstNamename:"Jimmy Eat",
+    firstName:"Jimmy Eat",
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
     homeId:2,
@@ -32,7 +32,7 @@
   
   var customer3 = {
     id: 4,
-    firstNamename:"Ben",
+    firstName:"Ben",
     lastName:"Dover",
     emailAddress:"ben@gmail.com",
     homeId:3,

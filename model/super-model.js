@@ -10,10 +10,11 @@ module.exports = function(){
       return  r.db('home_owner_center').table(this.tableName).run()
    },
  
-   find: function(id){
-     return r.db('home_owner_center').table(this.tableName).filter({
+   find: function*(id){
+     var query = yield r.db('home_owner_center').table(this.tableName).filter({
         id: parseInt(id)
       }).run()
+      return query[0]
    },
    
    destroy: function(id){
