@@ -6,13 +6,14 @@ var coMocha = require('co-mocha')
 
 
 
+
+
 describe('all()',function(){
   
   it('should return an array of all the houses', function *(){
     var homes = yield home.all();
     assert.equal(3, homes.length);
-    
-    
+  
   })
   
   it('should return an array of all the users', function *(){
@@ -20,17 +21,13 @@ describe('all()',function(){
     assert.equal(4,users.length);
   })
   
-  
-  
 })
-
-
 
 describe('find()',function(){
   
     // customer = {
   //  id: 1,
-  //  firstNamename:"John",
+  //  firstName:"John",
   //  lastName:"Doe",
   //  emailAddress:"johndoe@gmail.com",
   //  homeId:1,
@@ -40,6 +37,11 @@ describe('find()',function(){
     var testUser = yield user.find(1);
     assert.equal("John",testUser.firstName)
     assert.equal("Doe",testUser.lastName)
+  })
+  
+  it('should return a user by an attribute',function*(){
+    var testUser = yield user.findBy('firstName','John');
+    assert.equal("Doe", testUser[0].lastName)
   })
   
   //var house3 = {
@@ -72,3 +74,34 @@ describe('find()',function(){
   })
   
 })
+
+describe('create(),destroy()',function(){
+  
+  var testUser = {
+    firstName:'Test',
+    lastName:'User',
+    emailAddress:'andrewf02@gmail.com',
+    houseId:null,
+    password:'password'
+  }
+  
+  it('should insert a user into the database and remove it',function*(){
+   user.create(testUser)
+   var verifiedUser = yield user.findBy('firstName','Test');
+   console.log(verifiedUser[0].firstName,verifiedUser[0].id)
+   assert.equal("Test",verifiedUser[0].firstName);
+   
+  })
+  
+  after(function*() {
+    var verifiedUser = yield user.findBy('firstName','Test');
+    console.log(verifiedUser[0].id)
+    user.destroy(verifiedUser[0].id)
+  });
+
+  
+})
+
+
+
+

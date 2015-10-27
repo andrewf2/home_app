@@ -1,6 +1,5 @@
 'use strict';
-
-
+var async = require("async");
 
   var customer = {
     id: 1,
@@ -113,27 +112,28 @@ var r = require('rethinkdbdash')({
 });
 
 function seed(){
-   r.dbCreate('home_owner_center').run().then(function(){
+     r.dbCreate('home_owner_center').run().then(function(){
          r.db('home_owner_center').tableCreate('users', {primaryKey: "id"}).run().then(function(){
           r.db('home_owner_center').tableCreate('homes', {primaryKey: "id"}).run().then(function(){
-             r.db('home_owner_center').table('users').insert(customer).run();
-             r.db('home_owner_center').table('users').insert(customer2).run();
-             r.db('home_owner_center').table('users').insert(builder).run();
-             r.db('home_owner_center').table('users').insert(customer3).run();
-             r.db('home_owner_center').table('homes').insert(house).run();
-             r.db('home_owner_center').table('homes').insert(house2).run();
-             r.db('home_owner_center').table('homes').insert(house3).run();
-             console.log("query finished")
-             
+            r.db('home_owner_center').table('users').insert(customer).run()
+            r.db('home_owner_center').table('users').insert(customer2).run()
+            r.db('home_owner_center').table('users').insert(builder).run()
+            r.db('home_owner_center').table('users').insert(customer3).run()
+            r.db('home_owner_center').table('homes').insert(house).run()
+            r.db('home_owner_center').table('homes').insert(house2).run()
+            r.db('home_owner_center').table('homes').insert(house3).run()
+            console.log("query finished")
+            return
            })
          })
        })
+   
 }
 
-function *run(){
+function run(){
   if(r.dbList().contains('home_owner_center')){
    try{
-     yield r.dbDrop('home_owner_center').run().then(function(){
+      r.dbDrop('home_owner_center').run().then(function(){
       seed();
     })
   }
@@ -146,8 +146,9 @@ function *run(){
     seed();
   }
 }
+run()
 
-run().next()
+
 
 
 

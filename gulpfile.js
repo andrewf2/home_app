@@ -2,6 +2,7 @@ var gulp = require('gulp');
 
 var nodemon = require('gulp-nodemon');
 
+
 gulp.task('dev', function () {
   nodemon({
       script: 'http-server.js',
@@ -17,7 +18,10 @@ gulp.task('seed', function () {
       script: 'seed.js',
       nodeArgs: ['--harmony'],
       ext: 'js'})
-      .on('restart', function () {
-          console.log('restarted!')
-      })
+      .on('stop', function () {
+      process.nextTick(function () {
+      process.exit(0);
+    });
+  });
 })
+
