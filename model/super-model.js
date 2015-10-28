@@ -40,12 +40,18 @@ module.exports = function(){
       r.db('home_owner_center').table(this.tableName).insert(obj).run();
    },
    
-   join: function(table){
-     r.db('home_owner_center').table(this.tableName).innerJoin(
-     r.table(table),
-    function (result1,result2) {
-      return result1(this.tableName+"Id").eq(result2("id"));
-    }).zip()
+   join: function*(table){
+    var tableName = this.tableName
+    var query = yield r.db('home_owner_center').table(tableName).concatMap(function(parent) {
+	  return r.db('home_owner_center').table(table).getAll(
+		parent("id"),
+		{ index:+"Id" }
+	    ).map(function(child) {
+		  return { child: child, parent: parent }
+   	    })
+      }).run()
+   return query;
+    
    },
   
    save: function(id,obj){

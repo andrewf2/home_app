@@ -38,6 +38,15 @@ var async = require("async");
     password:"password"
   }
   
+  var customer4 = {
+    id:5,
+    firstName:"Ben's",
+    lastName:"Wife",
+    emailAddress:"benswife@gmail.com",
+    homeId:3,
+    password:"password"
+  }
+  
   var house2 = {
     id:2,
     address : "311 Bluebell st",
@@ -115,19 +124,21 @@ function seed(){
      r.dbCreate('home_owner_center').run().then(function(){
          r.db('home_owner_center').tableCreate('users', {primaryKey: "id"}).run().then(function(){
           r.db('home_owner_center').tableCreate('homes', {primaryKey: "id"}).run().then(function(){
-            r.db('home_owner_center').table('users').insert(customer).run()
-            r.db('home_owner_center').table('users').insert(customer2).run()
-            r.db('home_owner_center').table('users').insert(builder).run()
-            r.db('home_owner_center').table('users').insert(customer3).run()
-            r.db('home_owner_center').table('homes').insert(house).run()
-            r.db('home_owner_center').table('homes').insert(house2).run()
-            r.db('home_owner_center').table('homes').insert(house3).run()
-            console.log("query finished")
-            return
+            r.db('home_owner_center').table('users').indexCreate('homeId').run().then(function(){
+              r.db('home_owner_center').table('users').insert(customer).run()
+              r.db('home_owner_center').table('users').insert(customer2).run()
+              r.db('home_owner_center').table('users').insert(builder).run()
+              r.db('home_owner_center').table('users').insert(customer3).run()
+              r.db('home_owner_center').table('users').insert(customer4).run()
+              r.db('home_owner_center').table('homes').insert(house).run()
+              r.db('home_owner_center').table('homes').insert(house2).run()
+              r.db('home_owner_center').table('homes').insert(house3).run()
+              console.log("query finished")
+              return
+            })
            })
          })
        })
-   
 }
 
 function run(){

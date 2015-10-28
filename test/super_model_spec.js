@@ -18,7 +18,7 @@ describe('all()',function(){
   
   it('should return an array of all the users', function *(){
     var users = yield user.all();
-    assert.equal(4,users.length);
+    assert.equal(5,users.length);
   })
   
 })
@@ -84,22 +84,34 @@ describe('create(),destroy()',function(){
     houseId:null,
     password:'password'
   }
+  var verifiedUser;
+  
+  before(function*(){
+    user.create(testUser)
+    
+    
+  })
   
   it('should insert a user into the database and remove it',function*(){
-   user.create(testUser)
-   var verifiedUser = yield user.findBy('firstName','Test');
-   console.log(verifiedUser[0].firstName,verifiedUser[0].id)
+   verifiedUser = yield user.findBy('firstName','Test');
    assert.equal("Test",verifiedUser[0].firstName);
    
   })
   
-  after(function*() {
-    var verifiedUser = yield user.findBy('firstName','Test');
-    console.log(verifiedUser[0].id)
+  after(function() {
+    
     user.destroy(verifiedUser[0].id)
+    assert.notEqual(user.find(verifiedUser[0].id),verifiedUser[0])
   });
 
   
+})
+
+describe('join()',function(){
+  it('should perform an inner join' ,function*(){
+    
+    console.log(user.join())
+  })
 })
 
 
