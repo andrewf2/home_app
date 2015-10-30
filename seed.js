@@ -2,7 +2,6 @@
 var async = require("async");
 
   var customer = {
-    id: 1,
     firstName:"John",
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
@@ -12,7 +11,6 @@ var async = require("async");
    
   
   var customer2 = {
-    id: 3,
     firstName:"Jimmy Eat",
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
@@ -21,7 +19,6 @@ var async = require("async");
   }
   
    var builder = {
-    id: 2,
     customers: [1,2],
     firstName: "Bob",
     lastName: "Builder",
@@ -30,7 +27,6 @@ var async = require("async");
   }
   
   var customer3 = {
-    id: 4,
     firstName:"Ben",
     lastName:"Dover",
     emailAddress:"ben@gmail.com",
@@ -39,7 +35,6 @@ var async = require("async");
   }
   
   var customer4 = {
-    id:5,
     firstName:"Ben's",
     lastName:"Wife",
     emailAddress:"benswife@gmail.com",
@@ -48,7 +43,6 @@ var async = require("async");
   }
   
   var house2 = {
-    id:2,
     address : "311 Bluebell st",
     progress : {
     brickWork : false,
@@ -71,7 +65,6 @@ var async = require("async");
    }
    
    var house3 = {
-    id:3,
     address : "55 Main st",
     progress : {
     brickWork : false,
@@ -94,7 +87,6 @@ var async = require("async");
    }
   
    var house = {
-    id:1,
     address : "101 maple street",
     progress : {
     brickWork : false,
@@ -125,15 +117,46 @@ function seed(){
          r.db('home_owner_center').tableCreate('users', {primaryKey: "id"}).run().then(function(){
           r.db('home_owner_center').tableCreate('homes', {primaryKey: "id"}).run().then(function(){
             r.db('home_owner_center').table('users').indexCreate('homeId').run().then(function(){
-              r.db('home_owner_center').table('users').insert(customer).run()
-              r.db('home_owner_center').table('users').insert(customer2).run()
-              r.db('home_owner_center').table('users').insert(builder).run()
-              r.db('home_owner_center').table('users').insert(customer3).run()
-              r.db('home_owner_center').table('users').insert(customer4).run()
-              r.db('home_owner_center').table('homes').insert(house).run()
-              r.db('home_owner_center').table('homes').insert(house2).run()
-              r.db('home_owner_center').table('homes').insert(house3).run()
-              console.log("query finished")
+              async.parallel([
+                function(callback){
+                   callback(null,r.db('home_owner_center').table('users').insert(customer).run())
+                   console.log("query finished1")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('users').insert(customer2).run())
+                   console.log("query finished2")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('users').insert(builder).run())
+                   console.log("query finished3")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('users').insert(customer3).run())
+                   console.log("query finished4")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('users').insert(customer4).run())
+                   console.log("query finished5")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('homes').insert(house).run())
+                   console.log("query finished6")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('homes').insert(house2).run())
+                   console.log("query finished7")
+               },
+               function(callback){
+                   callback(null,r.db('home_owner_center').table('homes').insert(house3).run())
+                   console.log("query finished8")
+               }
+               
+               ],function(err,result){
+                   if(err){
+                       console.log(err)
+                   }
+                   console.log("Query ran sucessfully")
+               });
               return
             })
            })

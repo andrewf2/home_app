@@ -11,13 +11,13 @@ var coMocha = require('co-mocha')
 describe('all()',function(){
   
   it('should return an array of all the houses', function *(){
-    var homes = yield home.all();
+    var homes = yield home.all()
     assert.equal(3, homes.length);
   
   })
   
   it('should return an array of all the users', function *(){
-    var users = yield user.all();
+    var users = yield user.all()
     assert.equal(5,users.length);
   })
   
@@ -34,9 +34,12 @@ describe('find()',function(){
   //  password:"password"
   //}
   it('should return a specified user', function*(){
-    var testUser = yield user.find(1);
-    assert.equal("John",testUser.firstName)
-    assert.equal("Doe",testUser.lastName)
+    var findByUser = yield user.findBy('firstName','John');
+    var findUser = yield user.find(findByUser[0].id);
+    assert.equal("John",findUser.firstName);
+    assert.equal("Doe",findUser.lastName);
+    assert.deepEqual(findByUser[0],findUser);
+    
   })
   
   it('should return a user by an attribute',function*(){
@@ -68,9 +71,11 @@ describe('find()',function(){
    //}
   
   it('should return a specific home', function*(){
-    var testHome = yield home.find(3);
-    assert.equal("55 Main st", testHome.address);
-    assert.equal(false,testHome.progress.brickWork)
+    var findByHome = yield home.findBy('address','311 Bluebell st');
+    var findHome = yield home.find(findByHome[0].id);
+    assert.equal("311 Bluebell st", findHome.address);
+    assert.equal(false,findHome.progress.brickWork)
+    assert.deepEqual(findByHome[0],findHome);
   })
   
 })
@@ -99,7 +104,6 @@ describe('create(),destroy()',function(){
   })
   
   after(function() {
-    
     user.destroy(verifiedUser[0].id)
     assert.notEqual(user.find(verifiedUser[0].id),verifiedUser[0])
   });
@@ -109,8 +113,7 @@ describe('create(),destroy()',function(){
 
 describe('join()',function(){
   it('should perform an inner join' ,function*(){
-    
-    console.log(user.join())
+    console.log(user.join());
   })
 })
 

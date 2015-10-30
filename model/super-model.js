@@ -6,15 +6,18 @@ module.exports = function(){
   return  {
     db:r.db('home_owner_center'),
     
-    all: function(){
-      return  r.db('home_owner_center').table(this.tableName).run();
+    all: function*(callback){
+      var query = yield r.db('home_owner_center').table(this.tableName).run();
+      return query;
+    
+      
    },
  
    find: function*(id){
      
      if(id != null){
-       var query = yield r.db('home_owner_center').table(this.tableName).filter({
-       id: parseInt(id)
+        var query = yield r.db('home_owner_center').table(this.tableName).filter({
+       id: id
      }).run();
       return query[0]
      }
