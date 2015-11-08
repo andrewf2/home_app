@@ -6,7 +6,8 @@ var async = require("async");
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
     homeId:1,
-    password:"password"
+    password:"password",
+    key:null
   }
    
   
@@ -15,7 +16,8 @@ var async = require("async");
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
     homeId:2,
-    password:"password"
+    password:"password",
+    key:null
   }
   
    var builder = {
@@ -23,7 +25,8 @@ var async = require("async");
     firstName: "Bob",
     lastName: "Builder",
     emailAddress:"bobthebuilder@gmail.com",
-    password:"password"
+    password:"password",
+    key:null
   }
   
   var customer3 = {
@@ -31,7 +34,8 @@ var async = require("async");
     lastName:"Dover",
     emailAddress:"ben@gmail.com",
     homeId:3,
-    password:"password"
+    password:"password",
+    key:null
   }
   
   var customer4 = {
@@ -39,7 +43,8 @@ var async = require("async");
     lastName:"Wife",
     emailAddress:"benswife@gmail.com",
     homeId:3,
-    password:"password"
+    password:"password",
+    key:null
   }
   
   var house2 = {
@@ -180,6 +185,7 @@ function run(){
     seed();
   }
 }
+
 run()
 
 

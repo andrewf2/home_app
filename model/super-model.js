@@ -57,10 +57,11 @@ module.exports = function(){
     
    },
   
-   save: function(id,obj){
-     r.db('home_owner_center').table(this.tableName).filter(
-     r.row("id").eq(id)
-   ).update(obj)
+   save: function(obj){
+     r.db('home_owner_center').table(this.tableName).filter({id:obj.id}).update(obj).run()
+    
+
+
    }
    
    

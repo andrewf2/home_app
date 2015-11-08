@@ -2,10 +2,10 @@ var assert = require("assert");
 var home = require("../model/home.js")();
 var user = require("../model/user.js")();
 var coMocha = require('co-mocha')
-
-
-
-
+var chai = require("chai");
+var chaiAsPromised = require("chai-as-promised");
+ 
+chai.use(chaiAsPromised);
 
 
 describe('all()',function(){
@@ -111,10 +111,50 @@ describe('create(),destroy()',function(){
   
 })
 
-describe('join()',function(){
-  it('should perform an inner join' ,function*(){
-    console.log(user.join());
+describe('save()',function(){
+  
+  var testUser = {
+    firstName:'Test',
+    lastName:'User',
+    emailAddress:'andrewf02@gmail.com',
+    houseId:null,
+    password:'password'
+  }
+  
+  var verifiedUser;
+  var test;
+  
+  before(function*(){
+    user.create(testUser)
   })
+  
+  it('should perform an update and overwrite changes in existing ' ,function*(){
+    test = yield user.findBy('emailAddress',testUser.emailAddress)
+    console.log(test)
+    assert.equal(test[0].firstName,'Test')
+    test[0].emailAddress = "newemail@email.com"
+    console.log(test)
+    assert.equal(test[0].emailAddress,"newemail@email.com");
+    
+  })
+  
+  
+  
+  after(function*(){
+    var updatedTest = yield user.findBy('emailAddress',testUser.emailAddress)
+    var query = user.save(updatedTest);
+    console.log(query)
+    
+  })
+  
+   
+  it('should remove the test record from the database',function*(){
+    var updatedTest = yield user.findBy('emailAddress',testUser.emailAddress)
+    var id = updatedTest[0].id
+    user.destroy(id)
+    
+  })
+  
 })
 
 

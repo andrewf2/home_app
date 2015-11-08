@@ -10,6 +10,8 @@
     "Alexander Baron <thealexbaron@gmail.com"
   ],
   "dependencies": {
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.1.0",
     "gulp": "^3.9.0",
     "gulp-nodemon": "^2.0.4",
     "koa": "^1.0.0",
