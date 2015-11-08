@@ -9,9 +9,8 @@ var serve = require('koa-static');
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
+var Auth = require('./auth/Auth.js')()
 var app = koa();
-
-
 
 
 app.use(function *(next) {
@@ -31,6 +30,7 @@ app.use(function *(next) {
 
     if (err) throw err;
 });
+app.use(koaBody)
 
 app.use(serve(__dirname + '/client/app'));
 
@@ -56,6 +56,15 @@ router.get('/users',function*(){
 router.get('/users/:id',function*(){
     var id = this.params.id
     this.body = yield User.find(id)
+})
+
+router.post('/login',function*(){
+    console.log(this.request.body)
+    var post = JSON.stringify(this.request.body)
+    var creds = JSON.parse(post)
+    
+    
+    this.body = yield Auth.createSession(creds)
 })
 
 app.use(router.routes());

@@ -7,6 +7,7 @@ var async = require("async");
     emailAddress:"johndoe@gmail.com",
     homeId:1,
     password:"password",
+    role:'customer',
     key:null
   }
    
@@ -17,6 +18,7 @@ var async = require("async");
     emailAddress:"jimmyeatworld@gmail.com",
     homeId:2,
     password:"password",
+    role:'customer',
     key:null
   }
   
@@ -26,6 +28,7 @@ var async = require("async");
     lastName: "Builder",
     emailAddress:"bobthebuilder@gmail.com",
     password:"password",
+    role:"admin",
     key:null
   }
   
@@ -35,6 +38,7 @@ var async = require("async");
     emailAddress:"ben@gmail.com",
     homeId:3,
     password:"password",
+    role:"customer",
     key:null
   }
   
@@ -44,6 +48,7 @@ var async = require("async");
     emailAddress:"benswife@gmail.com",
     homeId:3,
     password:"password",
+    role:"customer"
     key:null
   }
   

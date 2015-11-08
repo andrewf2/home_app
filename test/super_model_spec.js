@@ -143,7 +143,7 @@ describe('save()',function(){
   after(function*(){
     var updatedTest = yield user.findBy('emailAddress',testUser.emailAddress)
     var query = user.save(updatedTest);
-    console.log(query)
+    
     
   })
   
