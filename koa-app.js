@@ -36,11 +36,11 @@ app.use(serve(__dirname + '/client/app'));
 
 
 router.get('/myHome',function*(){
-  this.body = yield readFileFunction(__dirname + '/client/app/client_index.html');
+  this.body = yield render(__dirname + '/client/app/client_index.html');
 })
 
 router.get('/admin',function*(){
-   this.body =  yield readFileFunction(__dirname + '/client/admin/index.html');
+   this.body =  yield render(__dirname + '/client/admin/index.html');
 })
 
 
@@ -67,9 +67,9 @@ router.get('/users/:id',function*(){
 })
 
 router.post('/login',function*(){
-    var post = JSON.stringify(this.request.body)
-    var creds = JSON.parse(post)
-    var user = yield Auth.createSession(creds)
+    var loginPost = this.request.body;
+    var creds = Auth.format(loginPost);
+    var user = yield Auth.createSession(creds);
     console.log("authenticated"+ user)
     if (user.role == "customer"){
       this.redirect('/myHome');
@@ -83,7 +83,7 @@ app.use(router.routes());
 
 module.exports = app;
 
-var readFileFunction = function(src) {
+var render = function(src) {
   return new Promise(function (resolve, reject) {
     fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
       if(err) return reject(err);
