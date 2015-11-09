@@ -48,7 +48,7 @@ var async = require("async");
     emailAddress:"benswife@gmail.com",
     homeId:3,
     password:"password",
-    role:"customer"
+    role:"customer",
     key:null
   }
   

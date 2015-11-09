@@ -11,7 +11,7 @@ var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
 var Auth = require('./auth/Auth.js')()
 var app = koa();
-
+var fs = require('fs');
 
 app.use(function *(next) {
     var start = new Date();
@@ -34,7 +34,15 @@ app.use(koaBody)
 
 app.use(serve(__dirname + '/client/app'));
 
-router.get('/test', require('./handler/test.js'));
+
+router.get('/myHome',function*(){
+  this.body = yield readFileFunction(__dirname + '/client/app/client_index.html');
+})
+
+router.get('/admin',function*(){
+   this.body =  yield readFileFunction(__dirname + '/client/admin/index.html');
+})
+
 
 router.get('/homes', function*(){
    this.body = yield Home.all()
@@ -43,7 +51,7 @@ router.get('/homes', function*(){
 router.get('/homes/:id',function*(){
     var id = this.params.id
     var home = yield Home.find(id);
-    home[0].customers = yield Home.getCustomers(id)
+    home.customers = yield Home.getCustomers(id)
     this.body = home
     console.log(home)
  
@@ -59,14 +67,27 @@ router.get('/users/:id',function*(){
 })
 
 router.post('/login',function*(){
-    console.log(this.request.body)
     var post = JSON.stringify(this.request.body)
     var creds = JSON.parse(post)
-    
-    
-    this.body = yield Auth.createSession(creds)
+    var user = yield Auth.createSession(creds)
+    console.log("authenticated"+ user)
+    if (user.role == "customer"){
+      this.redirect('/myHome');
+    }
+    else if(user.role == 'admin'){
+      this.redirect('/admin')   
+    }
 })
 
 app.use(router.routes());
 
 module.exports = app;
+
+var readFileFunction = function(src) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
+      if(err) return reject(err);
+      resolve(data);
+    });
+  });
+}
