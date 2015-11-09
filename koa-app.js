@@ -1,11 +1,16 @@
 'use strict';
-var r = require('rethinkdbdash')({
-    pool: true
-});
 var koa = require('koa');
 var koaBody = require('koa-body')();
 var config = require('./config');
 var serve = require('koa-static');
+serve.render =  function(src) {
+  return new Promise(function (resolve, reject) {
+    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
+      if(err) return reject(err);
+      resolve(data);
+    });
+  });
+}
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
@@ -30,17 +35,18 @@ app.use(function *(next) {
 
     if (err) throw err;
 });
+
 app.use(koaBody)
 
 app.use(serve(__dirname + '/client/app'));
 
 
 router.get('/myHome',function*(){
-  this.body = yield render(__dirname + '/client/app/client_index.html');
+  this.body = yield serve.render(__dirname + '/client/app/client_index.html');
 })
 
 router.get('/admin',function*(){
-   this.body =  yield render(__dirname + '/client/admin/index.html');
+   this.body =  yield serve.render(__dirname + '/client/admin/index.html');
 })
 
 
@@ -54,7 +60,6 @@ router.get('/homes/:id',function*(){
     home.customers = yield Home.getCustomers(id)
     this.body = home
     console.log(home)
- 
 })
 
 router.get('/users',function*(){
@@ -68,9 +73,9 @@ router.get('/users/:id',function*(){
 
 router.post('/login',function*(){
     var loginPost = this.request.body;
+    console.log(loginPost)
     var creds = Auth.format(loginPost);
     var user = yield Auth.createSession(creds);
-    console.log("authenticated"+ user)
     if (user.role == "customer"){
       this.redirect('/myHome');
     }
@@ -83,11 +88,3 @@ app.use(router.routes());
 
 module.exports = app;
 
-var render = function(src) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
-      if(err) return reject(err);
-      resolve(data);
-    });
-  });
-}

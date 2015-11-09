@@ -31,7 +31,7 @@ module.exports = function(){
    findBy: function*(attr,val){
      var queryObject = {}
      queryObject[attr] = val
-     console.log(queryObject)
+     
      var query = yield r.db('home_owner_center').table(this.tableName).filter(queryObject).run();
      return query
    },

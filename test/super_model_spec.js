@@ -130,10 +130,10 @@ describe('save()',function(){
   
   it('should perform an update and overwrite changes in existing ' ,function*(){
     test = yield user.findBy('emailAddress',testUser.emailAddress)
-    console.log(test)
+    
     assert.equal(test[0].firstName,'Test')
     test[0].emailAddress = "newemail@email.com"
-    console.log(test)
+    
     assert.equal(test[0].emailAddress,"newemail@email.com");
     
   })

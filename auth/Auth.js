@@ -22,10 +22,12 @@ module.exports = function(){
         var sessionObject = user[0];
         sessionObject.key = key;
         User.save(sessionObject);
+        
         return sessionObject;
  
         }else{
           console.log("fail")
+          error.code = 404;
         }
       },
       
@@ -50,7 +52,7 @@ module.exports = function(){
         var sessionObject = user[0];
         sessionObject.key = key;
         User.save(sessionObject);
-        return sessionObject;
+        
  
         }else{
           console.log("fail")
