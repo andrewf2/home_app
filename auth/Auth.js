@@ -25,9 +25,16 @@ module.exports = function(){
         
         return sessionObject;
  
-        }else{
-          console.log("fail")
-          error.code = 404;
+      }
+      else if(user[0].password != creds.password){
+        error.code = 401
+        error.message = "invalid password";
+        return error;
+      }
+      else{
+        console.log("fail")
+        error.code = 404;
+        return error
         }
       },
       

@@ -73,13 +73,18 @@ router.get('/users/:id',function*(){
 
 router.post('/login',function*(){
     var loginPost = this.request.body;
-    console.log(loginPost)
     var creds = Auth.format(loginPost);
-    var user = yield Auth.createSession(creds);
-    if (user.role == "customer"){
+    var response = yield Auth.createSession(creds);
+    console.log(response)
+    if(response.message != undefined || response.code != 200){
+      this.body = response.code + ":"+ response.message
+    }
+    
+    
+    if (response.role == "customer"){
       this.redirect('/myHome');
     }
-    else if(user.role == 'admin'){
+    else if(response.role == 'admin'){
       this.redirect('/admin')   
     }
 })

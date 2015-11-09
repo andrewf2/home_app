@@ -19,7 +19,6 @@ describe('auth()', function(){
     })
   
    it('should fail as user does not exist',function*(){
-     console.log('test'+ response)
      assert.equal(response.code,404)
  
     })
