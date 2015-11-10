@@ -3,21 +3,13 @@ var koa = require('koa');
 var koaBody = require('koa-body')();
 var config = require('./config');
 var serve = require('koa-static');
-serve.render =  function(src) {
-  return new Promise(function (resolve, reject) {
-    fs.readFile(src, {'encoding': 'utf8'}, function (err, data) {
-      if(err) return reject(err);
-      resolve(data);
-    });
-  });
-}
 var session = {};
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
 var Auth = require('./auth/Auth.js')()
 var app = koa();
-var fs = require('fs');
+
 
 app.use(function *(next) {
     var start = new Date();
@@ -42,7 +34,7 @@ app.use(koaBody)
 app.use(serve(__dirname + '/client/app'));
 
 
-router.get('/myHome',function*(){
+router.get('/myHome/:id',function*(){
   Auth.checkRole('customer',session, this)
   this.body = yield serve.render(__dirname + '/client/owner/index.html');
   console.log(session)
@@ -86,7 +78,7 @@ router.post('/login',function*(){
     var user = yield Auth.createSession(creds);
     session.user = user;
     if (user.role == "customer"){
-      this.redirect('/myHome');
+      this.redirect('/myHome/'+session.user.homeId);
     }
     else if(user.role == 'admin'){
       this.redirect('/admin')   
