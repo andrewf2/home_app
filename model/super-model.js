@@ -29,6 +29,7 @@ module.exports = function(){
    },
    
    findBy: function*(attr,val){
+       
      var queryObject = {}
      queryObject[attr] = val
      

@@ -54,6 +54,7 @@ var async = require("async");
   
   var house2 = {
     address : "311 Bluebell st",
+    price: 200000,
     progress : {
     brickWork : false,
     cabinets : false,
@@ -76,6 +77,7 @@ var async = require("async");
    
    var house3 = {
     address : "55 Main st",
+    price: 400000,
     progress : {
     brickWork : false,
     cabinets : false,
@@ -98,6 +100,7 @@ var async = require("async");
   
    var house = {
     address : "101 maple street",
+    price:500000,
     progress : {
     brickWork : false,
     cabinets : false,

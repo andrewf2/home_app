@@ -65,6 +65,14 @@ module.exports = function(){
           console.log("fail")
         }
         
+      },
+      
+      checkRole: function(role,session,ctx){
+        if(session.user == undefined || session.user.role != role){
+          console.log(session)
+          ctx.redirect('/')
+         }
+        
       }
       
     }

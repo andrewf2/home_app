@@ -11,6 +11,7 @@ serve.render =  function(src) {
     });
   });
 }
+var session = {};
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
@@ -42,10 +43,13 @@ app.use(serve(__dirname + '/client/app'));
 
 
 router.get('/myHome',function*(){
-  this.body = yield serve.render(__dirname + '/client/app/client_index.html');
+  Auth.checkRole('customer',session, this)
+  this.body = yield serve.render(__dirname + '/client/owner/index.html');
+  console.log(session)
 })
 
 router.get('/admin',function*(){
+   Auth.checkRole('admin',session, this)
    this.body =  yield serve.render(__dirname + '/client/admin/index.html');
 })
 
@@ -71,20 +75,20 @@ router.get('/users/:id',function*(){
     this.body = yield User.find(id)
 })
 
+router.get('/session',function(){
+  this.body =  session
+})
+
 router.post('/login',function*(){
     var loginPost = this.request.body;
+    console.log(loginPost)
     var creds = Auth.format(loginPost);
-    var response = yield Auth.createSession(creds);
-    console.log(response)
-    if(response.message != undefined || response.code != 200){
-      this.body = response.code + ":"+ response.message
-    }
-    
-    
-    if (response.role == "customer"){
+    var user = yield Auth.createSession(creds);
+    session.user = user;
+    if (user.role == "customer"){
       this.redirect('/myHome');
     }
-    else if(response.role == 'admin'){
+    else if(user.role == 'admin'){
       this.redirect('/admin')   
     }
 })
