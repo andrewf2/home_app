@@ -2,10 +2,11 @@
 var async = require("async");
 
   var customer = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1',
     firstName:"John",
     lastName:"Doe",
     emailAddress:"johndoe@gmail.com",
-    homeId:1,
+    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3',
     password:"password",
     role:'customer',
     key:null
@@ -13,17 +14,19 @@ var async = require("async");
    
   
   var customer2 = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2',
     firstName:"Jimmy Eat",
     lastName:"World",
     emailAddress:"jimmyeatworld@gmail.com",
-    homeId:2,
+    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',
     password:"password",
     role:'customer',
     key:null
   }
   
    var builder = {
-    customers: [1,2],
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b3',
+    customers: ['dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b4','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5'],
     firstName: "Bob",
     lastName: "Builder",
     emailAddress:"bobthebuilder@gmail.com",
@@ -33,26 +36,29 @@ var async = require("async");
   }
   
   var customer3 = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b4',
     firstName:"Ben",
     lastName:"Dover",
     emailAddress:"ben@gmail.com",
-    homeId:3,
+    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
     password:"password",
     role:"customer",
     key:null
   }
   
   var customer4 = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5',
     firstName:"Ben's",
     lastName:"Wife",
     emailAddress:"benswife@gmail.com",
-    homeId:3,
+    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
     password:"password",
     role:"customer",
     key:null
   }
   
   var house2 = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
     address : "311 Bluebell st",
     price: 200000,
     progress : {
@@ -76,6 +82,7 @@ var async = require("async");
    }
    
    var house3 = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',
     address : "55 Main st",
     price: 400000,
     progress : {
@@ -99,6 +106,7 @@ var async = require("async");
    }
   
    var house = {
+    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3',
     address : "101 maple street",
     price:500000,
     progress : {
