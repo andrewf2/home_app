@@ -3,11 +3,11 @@ var koa = require('koa');
 var koaBody = require('koa-body')();
 var config = require('./config');
 var serve = require('koa-static');
-var session = {};
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
-var Auth = require('./auth/Auth.js')()
+var session = require('./auth/session.js')();
+var Auth = require('./auth/Auth.js')(session)
 var app = koa();
 
 
@@ -34,15 +34,18 @@ app.use(koaBody)
 app.use(serve(__dirname + '/client/app'));
 
 
-router.get('/myHome/:id',function*(){
-  Auth.checkRole('customer',session, this)
-  this.body = yield serve.render(__dirname + '/client/owner/index.html');
-  console.log(session)
+router.get('/myHome/:email',function*(){
+  var user = session[Auth.getSession(this.params.email,session)]
+  var key = this.request.header["X-AUTH-TOKEN"]
+  Auth.checkRole('customer',user, this)
+  this.body = this.request
 })
 
-router.get('/admin',function*(){
-   Auth.checkRole('admin',session, this)
-   this.body =  yield serve.render(__dirname + '/client/admin/index.html');
+router.get('/admin/:email',function*(){
+   var user = session[Auth.getSession(this.params.email,session)]
+   Auth.checkRole('admin',user, this)
+   //this.body =  yield serve.render(__dirname + '/client/admin/index.html');
+   this.body = this.request
 })
 
 
@@ -67,8 +70,8 @@ router.get('/users/:id',function*(){
     this.body = yield User.find(id)
 })
 
-router.get('/session',function(){
-  this.body =  session
+router.get('/session',function*(){
+  this.body = session
 })
 
 router.post('/login',function*(){
@@ -76,12 +79,14 @@ router.post('/login',function*(){
     console.log(loginPost)
     var creds = Auth.format(loginPost);
     var user = yield Auth.createSession(creds);
-    session.user = user;
+    session[user.key] = user;
+    console.log(user)
+    this.body = user.key;
     if (user.role == "customer"){
-      this.redirect('/myHome/'+session.user.homeId);
+      this.redirect('/myHome/'+ session[user.key].emailAddress);
     }
     else if(user.role == 'admin'){
-      this.redirect('/admin')   
+      this.redirect('/admin/' + session[user.key].emailAddress);   
     }
 })
 
