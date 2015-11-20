@@ -84,14 +84,8 @@ router.post('/login',function*(){
     var creds = Auth.format(loginPost);
     var user = yield Auth.createSession(creds);
     session[user.key] = user;
-    console.log(user)
-    this.body = user.key;
-    if (user.role == "customer"){
-      this.redirect('/myHome/'+ session[user.key].emailAddress);
-    }
-    else if(user.role == 'admin'){
-      this.redirect('/admin/' + session[user.key].emailAddress);   
-    }
+    
+    this.body = user
 })
 
 app.use(router.routes());

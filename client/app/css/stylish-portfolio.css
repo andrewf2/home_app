@@ -181,15 +181,25 @@ hr.small {
 /* Callout */
 
 .callout {
-    display: table;
-    width: 100%;
+
     height: 400px;
-    color: #fff;
-    background: url(../img/callout.jpg) no-repeat center center scroll;
+    color: black;
+    background: url(../img/callout.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+}
+.callout2 {
+    display: table;
+    height: 400px;
+    color: black;
+    background: url(../img/kitchen.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+    
 }
 
 /* Portfolio */
@@ -239,7 +249,7 @@ footer {
 }
 
 p,h1,h3 {
-    color:seashell;
+    color:#cce5ff;
 }
 
 /* Modal Base CSS */
@@ -479,3 +489,6 @@ body
     margin: 0 auto;
 }
 
+.mainheader{
+    color:seashell;
+}

@@ -1,21 +1,25 @@
-
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" ng-app = 'home_owner_center'>
 
 <head>
-
+    <title>{{company.name}}</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Ryland Owner Center</title>
+    <title></title> Owner Center</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/stylish-portfolio.css" rel="stylesheet">
+    <link href="/css/portfolio-item.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+
+    <!-- Custom CSS -->
+    <link href="/css/stylish-portfolio.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -31,393 +35,84 @@
 </head>
 
 <body>
-
+<div class = 'row'>
     <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click();>Ryland Owner Center</a>
-            </li>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
-            </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >About</a>
-            </li>
-            <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Owner Center</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
     </nav>
-
-    <!-- Header -->
-    <header id="top" class="header">
-        <div class="text-vertical-center">
-            <h1>Ryland Owner Center</h1>
-            <h3>Stay Tuned in with your Dream Home</h3>
-            <br>
-            <button id="trigger" class="btn btn-dark btn-lg" type="button">Login</button>
-
-              <div id="content">
-                <form class = "login-form" action="/login" method="post">
-                    <h1 class = "login-modal">Enter Your Credentials</h1>
-                  Email:<br>
-                  <input type="text" name="emailAddress">
-                  <br>
-                  Password:<br>
-                  <input type="password" name="password"><br/><br/>
-                  <input type="submit" value="Login">
-                </form>
-              </div><br/>
-            <p>Not registered?&nbsp<a href ="">Sign Up</a></p>
-        </div>
-    </header>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                   
-                </div>
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Services -->
-    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
-    <section id="services" class="services bg-primary">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Our Services</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6">
-                            <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
-                            </span>
-                                <h4>
-                                    <strong>Service Name</strong>
-                                </h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                                <a href="#" class="btn btn-light">Learn More</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Callout -->
-    <aside class="callout">
-        <div class="text-vertical-center">
-            <h1>Track daily progress on your home</h1>
-        </div>
-    </aside>
-
-    <!-- Portfolio -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Our Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.row (nested) -->
-                    <a href="#" class="btn btn-dark">View More Items</a>
-                </div>
-                <!-- /.col-lg-10 -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container -->
-    </section>
-
-    <!-- Call to Action -->
+    </div>
+    
     
 
-    <!-- Map -->
-   
-    <!-- Footer -->
-    <footer>
-        <div class="container">
+    <!-- Page Content -->
+    <div class = 'row' ng-view = "">
+
+        <!-- Portfolio Item Heading -->
+        
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        
+        <!-- /.row -->
+
+        <!-- Related Projects Row -->
+        
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
             <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    
-                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
-                    <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
-                        </li>
-                    </ul>
-                    <br>
-                    <ul class="list-inline">
-                        <li>
-                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
-                        </li>
-                    </ul>
-                    <hr class="small">
-                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
                 </div>
             </div>
-        </div>
-    </footer>
-
-    <!-- jQuery -->
+            <!-- /.row -->
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/controllers/IndexController.js"></script>
     <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-    });
-// Create an immediately invoked functional expression to wrap our code
-(function() {
-  // Define our constructor 
-  this.Modal = function() {
-    // Create global element references
-    this.closeButton = null;
-    this.modal = null;
-    this.overlay = null;
-    // Determine proper prefix
-    this.transitionEnd = transitionSelect();
-    // Define option defaults 
-    var defaults = {
-      autoOpen: false,
-      className: 'fade-and-drop',
-      closeButton: true,
-      content: "",
-      maxWidth: 600,
-      minWidth: 280,
-      overlay: true
-    }
-    // Create options by extending defaults with the passed in arugments
-    if (arguments[0] && typeof arguments[0] === "object") {
-      this.options = extendDefaults(defaults, arguments[0]);
-    }
-    if(this.options.autoOpen === true) this.open();
-  }
-  // Public Methods
-  Modal.prototype.close = function() {
-    var _ = this;
-    this.modal.className = this.modal.className.replace(" scotch-open", "");
-    this.overlay.className = this.overlay.className.replace(" scotch-open",
-      "");
-    this.modal.addEventListener(this.transitionEnd, function() {
-      _.modal.parentNode.removeChild(_.modal);
-    });
-    this.overlay.addEventListener(this.transitionEnd, function() {
-      if(_.overlay.parentNode) _.overlay.parentNode.removeChild(_.overlay);
-    });
-  }
-  Modal.prototype.open = function() {
-    buildOut.call(this);
-    initializeEvents.call(this);
-    window.getComputedStyle(this.modal).height;
-    this.modal.className = this.modal.className +
-      (this.modal.offsetHeight > window.innerHeight ?
-        " scotch-open scotch-anchored" : " scotch-open");
-    this.overlay.className = this.overlay.className + " scotch-open";
-  }
-  // Private Methods
-  function buildOut() {
-    var content, contentHolder, docFrag;
-    /*
-     * If content is an HTML string, append the HTML string.
-     * If content is a domNode, append its content.
-     */
-    if (typeof this.options.content === "string") {
-      content = this.options.content;
-    } else {
-      content = this.options.content.innerHTML;
-    }
-    // Create a DocumentFragment to build with
-    docFrag = document.createDocumentFragment();
-    // Create modal element
-    this.modal = document.createElement("div");
-    this.modal.className = "scotch-modal " + this.options.className;
-    this.modal.style.minWidth = this.options.minWidth + "px";
-    this.modal.style.maxWidth = this.options.maxWidth + "px";
-    // If closeButton option is true, add a close button
-    if (this.options.closeButton === true) {
-      this.closeButton = document.createElement("button");
-      this.closeButton.className = "scotch-close close-button";
-      this.closeButton.innerHTML = "&times;";
-      this.modal.appendChild(this.closeButton);
-    }
-    // If overlay is true, add one
-    if (this.options.overlay === true) {
-      this.overlay = document.createElement("div");
-      this.overlay.className = "scotch-overlay " + this.options.className;
-      docFrag.appendChild(this.overlay);
-    }
-    // Create content area and append to modal
-    contentHolder = document.createElement("div");
-    contentHolder.className = "scotch-content";
-    contentHolder.innerHTML = content;
-    this.modal.appendChild(contentHolder);
-    // Append modal to DocumentFragment
-    docFrag.appendChild(this.modal);
-    // Append DocumentFragment to body
-    document.body.appendChild(docFrag);
-  }
-  function extendDefaults(source, properties) {
-    var property;
-    for (property in properties) {
-      if (properties.hasOwnProperty(property)) {
-        source[property] = properties[property];
-      }
-    }
-    return source;
-  }
-  function initializeEvents() {
-    if (this.closeButton) {
-      this.closeButton.addEventListener('click', this.close.bind(this));
-    }
-    if (this.overlay) {
-      this.overlay.addEventListener('click', this.close.bind(this));
-    }
-  }
-  function transitionSelect() {
-    var el = document.createElement("div");
-    if (el.style.WebkitTransition) return "webkitTransitionEnd";
-    if (el.style.OTransition) return "oTransitionEnd";
-    return 'transitionend';
-  }
-}());
-var myContent = document.getElementById('content');
-var myModal = new Modal({
-  content: myContent
-});
-var triggerButton = document.getElementById('trigger');
-triggerButton.addEventListener('click', function() {
-  myModal.open();
-});
-    
-    </script>
+ 
 
 </body>
 
 </html>
-
-    Status API Training Shop Blog About Pricing 
-
-    © 2015 GitHub, Inc. Terms Privacy Security Contact Help 
-

@@ -11,8 +11,8 @@
   window.app.config(function($routeProvider){
   $routeProvider.when("/",
     {
-      templateUrl: "/views/homes.html",
-      controller: "HomesController"
+      templateUrl: "../views/_landing.html",
+      controller: "IndexController"
      
     }
   ).when("/homes/:id",
