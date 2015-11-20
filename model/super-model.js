@@ -3,6 +3,7 @@ var r = require('rethinkdbdash')({
 });
 
 module.exports = function(){
+    
   return  {
     db:r.db('home_owner_center'),
     

@@ -1,10 +1,6 @@
 var User = require('../model/user.js')();
 var uuid = require('uuid');
 
-
- 
-
-
   module.exports =  function(session){
   
   return{
@@ -97,13 +93,8 @@ var uuid = require('uuid');
           }
         }
       }
-      
-      
-      
     }
-    
   }
-  
   
   function sessionExists(email,session){
     if(session == {} || session == undefined){

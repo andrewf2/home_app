@@ -36,16 +36,20 @@ app.use(serve(__dirname + '/client/app'));
 
 router.get('/myHome/:email',function*(){
   var user = session[Auth.getSession(this.params.email,session)]
-  var key = this.request.header["X-AUTH-TOKEN"]
   Auth.checkRole('customer',user, this)
-  this.body = this.request
+  this.response.header['x-auth-token'] = user.key
+  this.body = yield serve.render(__dirname + '/client/owner/index.html');
+  
 })
 
 router.get('/admin/:email',function*(){
-   var user = session[Auth.getSession(this.params.email,session)]
-   Auth.checkRole('admin',user, this)
-   //this.body =  yield serve.render(__dirname + '/client/admin/index.html');
-   this.body = this.request
+  var user = session[Auth.getSession(this.params.email,session)]
+  Auth.checkRole('admin',user, this)
+  //this.body =  
+  this.response.set('api-key', user.key)
+  console.log(this)
+  
+  this.body = yield serve.render(__dirname + '/client/admin/index.html');
 })
 
 
