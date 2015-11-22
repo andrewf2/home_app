@@ -33,26 +33,6 @@ app.use(koaBody)
 
 app.use(serve(__dirname + '/client/app'));
 
-
-router.get('/myHome/:email',function*(){
-  var user = session[Auth.getSession(this.params.email,session)]
-  Auth.checkRole('customer',user, this)
-  this.response.header['x-auth-token'] = user.key
-  this.body = yield serve.render(__dirname + '/client/owner/index.html');
-  
-})
-
-router.get('/admin/:email',function*(){
-  var user = session[Auth.getSession(this.params.email,session)]
-  Auth.checkRole('admin',user, this)
-  //this.body =  
-  this.response.set('api-key', user.key)
-  console.log(this)
-  
-  this.body = yield serve.render(__dirname + '/client/admin/index.html');
-})
-
-
 router.get('/homes', function*(){
    this.body = yield Home.all()
 })
@@ -60,7 +40,6 @@ router.get('/homes', function*(){
 router.get('/homes/:id',function*(){
     var id = this.params.id
     var home = yield Home.find(id);
-    home.customers = yield Home.getCustomers(id)
     this.body = home
     console.log(home)
 })
@@ -80,11 +59,9 @@ router.get('/session',function*(){
 
 router.post('/login',function*(){
     var loginPost = this.request.body;
-    console.log(loginPost)
     var creds = Auth.format(loginPost);
     var user = yield Auth.createSession(creds);
     session[user.key] = user;
-    
     this.body = user
 })
 
