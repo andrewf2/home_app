@@ -8,15 +8,19 @@
   // mount on window for testing
   window.app = angular.module('home_owner_center', requires);
   
-  window.app.run(function($rootScope){
+  window.app.run(function($rootScope,$location,AuthService){
    
-      var user = JSON.parse(localStorage.getItem('currentUser'))
-      if(user == undefined){
-        $rootScope.currentUser = null
-      }
-      else{
-        $rootScope.currentUser == user;
-      }
+     $rootScope.$on('$routeChangeStart', function (event) {
+
+        if (!AuthService.isLoggedIn()) {
+            console.log('DENY');
+            event.preventDefault();
+            $location.path('/');
+        }
+        else {
+            console.log('ALLOW');
+        }
+    });
     
     
   })
