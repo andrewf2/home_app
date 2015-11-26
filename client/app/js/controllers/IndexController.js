@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function IndexController($scope,$http,$rootScope,$location) {
+function IndexController($scope,$http,$rootScope,$location,AuthService) {
   
    if($rootScope.currentUser != undefined || $rootScope.currentUser != null){
       $location.path('/myHome/'+ currentUser.emailAddress);
