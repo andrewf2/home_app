@@ -3,6 +3,7 @@
   var requires = [
 	  "ngResource",
 	  "ngRoute",
+	  "firebase"
   ];
 
   // mount on window for testing

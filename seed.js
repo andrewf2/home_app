@@ -1,133 +1,41 @@
 'use strict';
 var async = require("async");
+var User = require("./model/user.js")()
+var Home = require("./model/home.js")()
 
-  var customer = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1',
-    firstName:"John",
-    lastName:"Doe",
-    emailAddress:"johndoe@gmail.com",
-    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3',
-    password:"password",
-    role:'customer',
-    key:null
-  }
+
+
+  var customer = User.instance("John","Doe","johndoe@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3',"password",'customer')
+  customer.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1'
+  
+  var customer2 = User.instance("Jimmy Eat","World","jimmyeatworld@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',"password",'customer')
+  customer2.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2'
+  
+  var builder = User.instance("Bob","The Builder","bobthebuilder@gmail.com",null,"password",'admin')
+  builder.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b3'
+  
+  var customer3 = User.instance("Ben","Dover","ben@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',"password","customer")
+  customer3.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b4'
+  
+  var customer4 = User.instance("Ben's","Wife","benwife@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',"password","customer")
+  customer4.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5'
+  
+  var house = Home.instance("311 Bluebell st",200000,builder,'dc03d39f-123e-4b9d-90b4-ec3e8334d1b5','04/10/2016')
+  house.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3'
+  
+  var house2 = Home.instance('55 Main st',250000,builder,'dc03d39f-4567-4b9d-90b4-ec3e8334d1b5','05/31/2016')
+  house2.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1'
+  
+  var house3 = Home.instance("101 maple street",500000,builder,'dc03d39f-7890-4b9d-90b4-ec3e8334d1b5','12/31/2015')
+  house3.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2'
+ 
+ 
+  
+  
+   
    
   
-  var customer2 = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2',
-    firstName:"Jimmy Eat",
-    lastName:"World",
-    emailAddress:"jimmyeatworld@gmail.com",
-    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',
-    password:"password",
-    role:'customer',
-    key:null
-  }
-  
-   var builder = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b3',
-    customers: ['dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b4','dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5'],
-    firstName: "Bob",
-    lastName: "Builder",
-    emailAddress:"bobthebuilder@gmail.com",
-    password:"password",
-    role:"admin",
-    key:null
-  }
-  
-  var customer3 = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b4',
-    firstName:"Ben",
-    lastName:"Dover",
-    emailAddress:"ben@gmail.com",
-    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
-    password:"password",
-    role:"customer",
-    key:null
-  }
-  
-  var customer4 = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5',
-    firstName:"Ben's",
-    lastName:"Wife",
-    emailAddress:"benswife@gmail.com",
-    homeId:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
-    password:"password",
-    role:"customer",
-    key:null
-  }
-  
-  var house2 = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',
-    address : "311 Bluebell st",
-    price: 200000,
-    progress : {
-    brickWork : false,
-    cabinets : false,
-    carpetLaid : false,
-    electricalWork : false,
-    flooring : false,
-    foundationDone : false,
-    framed : false,
-    insulation : false,
-    interiorPaint : false,
-    lighting : false,
-    roofSheeted : false,
-    roofShingled : false,
-    siding : false,
-    sodLaid : false,
-    trim : false,
-    trusses : false
-    }
-   }
    
-   var house3 = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',
-    address : "55 Main st",
-    price: 400000,
-    progress : {
-    brickWork : false,
-    cabinets : false,
-    carpetLaid : false,
-    electricalWork : false,
-    flooring : false,
-    foundationDone : false,
-    framed : false,
-    insulation : false,
-    interiorPaint : false,
-    lighting : false,
-    roofSheeted : false,
-    roofShingled : false,
-    siding : false,
-    sodLaid : false,
-    trim : false,
-    trusses : false
-    }
-   }
-  
-   var house = {
-    id:'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3',
-    address : "101 maple street",
-    price:500000,
-    progress : {
-    brickWork : false,
-    cabinets : false,
-    carpetLaid : false,
-    electricalWork : false,
-    flooring : false,
-    foundationDone : false,
-    framed : false,
-    insulation : false,
-    interiorPaint : false,
-    lighting : false,
-    roofSheeted : false,
-    roofShingled : false,
-    siding : false,
-    sodLaid : false,
-    trim : false,
-    trusses : false
-    }
-  }
   
 var r = require('rethinkdbdash')({
     pool: true
@@ -141,7 +49,7 @@ function seed(){
               async.parallel([
                 function(callback){
                    callback(null,r.db('home_owner_center').table('users').insert(customer).run())
-                   console.log("query finished1")
+                   console.log("query finished")
                },
                function(callback){
                    callback(null,r.db('home_owner_center').table('users').insert(customer2).run())
@@ -190,6 +98,7 @@ function run(){
    try{
       r.dbDrop('home_owner_center').run().then(function(){
       seed();
+      
     })
   }
     catch (e){

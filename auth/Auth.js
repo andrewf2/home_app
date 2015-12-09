@@ -21,6 +21,7 @@ var uuid = require('uuid');
         if(sessionExists(creds.emailAddress,session)){
           sessionObject = session[this.getSession(creds.emailAddress,session)]
           console.log("session already exists")
+          return sessionObject;
         }else{
           key = uuid.v1();
           sessionObject = user[0];
