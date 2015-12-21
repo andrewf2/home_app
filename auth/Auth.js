@@ -12,26 +12,26 @@ var uuid = require('uuid');
       var user = yield User.findBy('emailAddress',creds.emailAddress);
       
        
-      if(user[0] == undefined){
+      if(user == undefined){
         error.message = "User does not exist";
         error.code = 404;
         return error
       }
-      else if(user[0].emailAddress == creds.emailAddress && user[0].password == creds.password){
+      else if(user.emailAddress == creds.emailAddress && user.password == creds.password){
         if(sessionExists(creds.emailAddress,session)){
           sessionObject = session[this.getSession(creds.emailAddress,session)]
           console.log("session already exists")
           return sessionObject;
         }else{
           key = uuid.v1();
-          sessionObject = user[0];
+          sessionObject = user;
           sessionObject.key = key;
           User.save(sessionObject);
         }
         return sessionObject;
  
       }
-      else if(user[0].password != creds.password){
+      else if(user.password != creds.password){
         error.code = 401
         error.message = "invalid password";
         return error;
@@ -54,14 +54,14 @@ var uuid = require('uuid');
         var user = yield User.findBy('emailAddress',currentUser.emailAddress);
         var error = {}
         
-        if(user[0] == undefined){
+        if(user == undefined){
         error.message = "User does not exist";
         error.code = 404;
         return error
       }
-      else if(user[0].emailAddress == currentUser.emailAddress && user[0].password == currentUser.password){
+      else if(user.emailAddress == currentUser.emailAddress && user.password == currentUser.password){
         var key = null;
-        var sessionObject = user[0];
+        var sessionObject = user;
         sessionObject.key = key;
         User.save(sessionObject);
         

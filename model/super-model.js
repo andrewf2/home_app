@@ -35,7 +35,7 @@ module.exports = function(){
      queryObject[attr] = val
      
      var query = yield r.db('home_owner_center').table(this.tableName).filter(queryObject).run();
-     return query
+     return query[0]
    },
    
    destroy: function(id){
@@ -43,7 +43,7 @@ module.exports = function(){
    },
    
    create: function(obj){
-      r.db('home_owner_center').table(this.tableName).insert(obj).run();
+     return r.db('home_owner_center').table(this.tableName).insert(obj).run();
    },
    
    join: function*(table){
@@ -61,7 +61,7 @@ module.exports = function(){
    },
   
    save: function(obj){
-     r.db('home_owner_center').table(this.tableName).filter({id:obj.id}).update(obj).run()
+     return r.db('home_owner_center').table(this.tableName).filter({id:obj.id}).update(obj).run()
     
    }
    

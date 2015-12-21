@@ -8,9 +8,10 @@ var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
 var session = require('./auth/session.js')();
 var Auth = require('./auth/Auth.js')(session)
+var cors = require('koa-cors');
 var app = koa();
 
-
+app.use(cors());
 app.use(function *(next) {
     var start = new Date();
     var err;
@@ -44,6 +45,21 @@ router.get('/homes/:id',function*(){
     console.log(home)
 })
 
+router.post('/homes',function*(){
+    var home = this.request.body;
+    this.body =  yield Home.save(home)
+})
+
+router.post('/users',function*(){
+    var user = this.request.body;
+    this.body =  User.save(user)
+})
+
+router.post('/homes/new',function*(){
+    var home = this.request.body
+    this.body = yield Home.create(home);
+})
+
 router.get('/users',function*(){
     this.body = yield User.all()
 })
@@ -53,8 +69,29 @@ router.get('/users/:id',function*(){
     this.body = yield User.find(id)
 })
 
+router.post('/users/new',function*(){
+    var user = this.request.body
+    this.body =  User.create(user);
+})
+
+router.get('/users/email/:email',function*(){
+    var email = this.params.email;
+    this.body = yield User.findBy("emailAddress",email);
+})
+
+router.post('/homes/:id',function*(){
+    var id = this.params.id;
+    var home = this.request.body;
+    this.body = yield Home.save(home)
+})
+
+router.get('/homes/address/:address',function*(){
+    var address = decodeURI(this.params.address)
+    this.body = yield Home.findBy("address",address);
+})
+
 router.get('/session',function*(){
-  this.body = session
+    this.body = session
 })
 
 router.post('/login',function*(){

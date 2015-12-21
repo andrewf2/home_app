@@ -7,7 +7,8 @@ window.app.service('AuthService', function($http, $rootScope, $location) {
           $rootScope.currentUser = JSON.parse(sessionStorage.getItem('currentUser'))
           $location.path('/myHome/' + $rootScope.currentUser.emailAddress)
         }else{
-          console.log('error')
+          console.log(data)
+          
         }
         
       }),

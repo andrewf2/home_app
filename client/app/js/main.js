@@ -9,6 +9,8 @@
   // mount on window for testing
   window.app = angular.module('home_owner_center', requires);
   
+  
+  
   window.app.run(function($rootScope,$location,AuthService){
    
      $rootScope.$on('$routeChangeStart', function (event) {

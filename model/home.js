@@ -19,7 +19,7 @@ function HomeSchema(address,price,builder,floorplan,ECD){
     this.builder = builder
     this.floorplan = floorplan
     this.ECD = ECD
-    var progress = {
+    this.progress = {
       brickWork : false,
       cabinets : false,
       carpetLaid : false,
