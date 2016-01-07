@@ -3,7 +3,7 @@
 /**
  * @ngInject
  */
-function navBar() {
+function navBar($rootScope) {
 
   return {
     restrict: 'E',

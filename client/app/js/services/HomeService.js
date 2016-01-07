@@ -1,22 +1,24 @@
-window.app.service('HomeService',function($http,$firebaseObject){
-  this.all = function(){
-     return $http.get("/homes").then(function(response) {return response});
-    
-  }
+function HomeService($http,$firebaseObject,BaseURL,CrudService){
+  this.resource = "homes"
   
-  this.find = function(id){
-    return $http.get("/homes/"+ id).success(function(response) {return response});
-  }
-  
-  
-  this.destory = function(id){
-    return $http.delete("/homes/"+ id).success(function(response) {return response});
-    
+  this.findByAddress = function(address){
+    return $http.get(BaseURL + "/" + this.resource + '/address/' + address)
   }
   
   this.getMainImage = function(id){
-    var ref = new Firebase("https://homeownercenter.firebaseio.com/homes/" + id);
-    return $firebaseObject(ref).$loaded();
+    var url = "https://homeownercenter.firebaseio.com/homes/" + id
+    console.log(url)
+    var refImg = new Firebase(url);
+    var ImgObj = $firebaseObject(refImg);
+    return ImgObj.$loaded()
   }
+  
+    
+    
+  
+  angular.extend(HomeService.prototype, CrudService);
+  
 
-})
+}
+
+window.app.service('HomeService', HomeService)

@@ -11,7 +11,7 @@ var Home = require("./model/home.js")()
   var customer2 = User.instance("Jimmy Eat","World","jimmyeatworld@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2',"password",'customer')
   customer2.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b2'
   
-  var builder = User.instance("Bob","The Builder","bobthebuilder@gmail.com",null,"password",'admin')
+  var builder = User.instance("Bob","The Builder","bobthebuilder@gmail.com",null,"password",'builder')
   builder.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b3'
   
   var customer3 = User.instance("Ben","Dover","ben@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',"password","customer")
@@ -20,15 +20,14 @@ var Home = require("./model/home.js")()
   var customer4 = User.instance("Ben's","Wife","benwife@gmail.com",'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1',"password","customer")
   customer4.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5'
   
-  var house = Home.instance("311 Bluebell st",200000,builder,'dc03d39f-123e-4b9d-90b4-ec3e8334d1b5','04/10/2016')
+  var house = Home.instance("311 Bluebell st",200000,builder,'dc03d39f-123e-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a3'
   
-  var house2 = Home.instance('55 Main st',250000,builder,'dc03d39f-4567-4b9d-90b4-ec3e8334d1b5','05/31/2016')
+  var house2 = Home.instance('55 Main st',250000,builder,'dc03d39f-4567-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house2.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a1'
   
-  var house3 = Home.instance("101 maple street",500000,builder,'dc03d39f-7890-4b9d-90b4-ec3e8334d1b5','12/31/2015')
+  var house3 = Home.instance("101 maple street",500000,builder,'dc03d39f-7890-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house3.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1a2'
- 
  
   
   

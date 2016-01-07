@@ -4,9 +4,11 @@ var Home = Object.create(SuperModel);
 Home.tableName = "homes"
 
 Home.getCustomers = function *(id){
-  var query =  yield SuperModel.db.table("users").filter({homeId: parseInt(id)}).run()
+  var query =  yield SuperModel.db.table(Home.tableName).filter({homeId: parseInt(id)}).run()
   return query
-},
+}
+
+
 
 Home.instance = function(address,price,builder,floorplan,ECD){
   return new HomeSchema(address,price,builder,floorplan,ECD)

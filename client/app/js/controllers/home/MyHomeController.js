@@ -3,15 +3,21 @@
 /**
  * @ngInject
  */
-function MyHomeController($scope,$http,HomeService,$rootScope) {
-  console.log($rootScope.currentUser)
-  HomeService.find($rootScope.currentUser.homeId).then(function(promise){
-    $rootScope.currentUser.home = promise.data
-    HomeService.getMainImage().then(function(data){
-      $rootScope.currentUser.home.image = data
-    })
-   
-   })
+function MyHomeController($scope,HomeService,$rootScope) {
+  
+  $scope.currentUser = window.currentUser
+  
+
+  HomeService.getMainImage(window.currentUser.homeId).then(function(data){
+      $scope.home.image = data.$value
+  })
+    
+  HomeService.find(window.currentUser.homeId).then(function(promise){
+    window.currentUser.home = promise.data
+    
+    $scope.home = promise.data
+    
+  })
   
 }
 

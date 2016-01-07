@@ -12,6 +12,7 @@ var cors = require('koa-cors');
 var app = koa();
 
 app.use(cors());
+
 app.use(function *(next) {
     var start = new Date();
     var err;
@@ -35,7 +36,10 @@ app.use(koaBody)
 app.use(serve(__dirname + '/client/app'));
 
 router.get('/homes', function*(){
-   this.body = yield Home.all()
+   var homes = yield Home.all()
+   
+   
+   this.body = homes
 })
 
 router.get('/homes/:id',function*(){
