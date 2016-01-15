@@ -8,7 +8,8 @@ function navBar($rootScope) {
   return {
     restrict: 'E',
     scope: {
-      company: '='
+      company: '=',
+      logout: '='
     },
     templateUrl:'../views/partials/index/_navbar.html'
   };

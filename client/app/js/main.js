@@ -3,7 +3,8 @@
   var requires = [
 	  "ngResource",
 	  "ngRoute",
-	  "firebase"
+	  "firebase",
+	  "ngMap"
   ];
   
   function setCurrentUser(promise,$q,$rootScope){
@@ -27,7 +28,17 @@
   
   window.app.constant('BaseURL', new String());
   
+  
+  
   window.app.run(function($rootScope,$location,AuthService,UserService,CacheService,$q){
+    
+     $rootScope.logout = function(){
+       AuthService.killServerSession().then(function(){
+         window.currentUser = null;
+         sessionStorage.removeItem('session')
+         $location.path('/')
+      })
+    }    
     
      $rootScope.logout_in = 'Login';
      

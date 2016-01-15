@@ -6,6 +6,7 @@ var serve = require('koa-static');
 var router = require('koa-router')();
 var Home = require('./model/home.js')();
 var User = require('./model/user.js')();
+var FloorPlan = require('./model/floorplan.js')();
 var session = require('./auth/session.js')();
 var Auth = require('./auth/Auth.js')(session)
 var cors = require('koa-cors');
@@ -49,9 +50,16 @@ router.get('/homes/:id',function*(){
     console.log(home)
 })
 
-router.post('/homes',function*(){
+
+
+router.post('/homes/',function*(){
     var home = this.request.body;
-    this.body =  yield Home.save(home)
+    this.body = yield Home.save(home)
+})
+
+router.get('/homes/address/:address',function*(){
+    var address = decodeURI(this.params.address)
+    this.body = yield Home.findBy("address",address);
 })
 
 router.post('/users',function*(){
@@ -61,6 +69,7 @@ router.post('/users',function*(){
 
 router.post('/homes/new',function*(){
     var home = this.request.body
+    console.log(home)
     this.body = yield Home.create(home);
 })
 
@@ -83,19 +92,31 @@ router.get('/users/email/:email',function*(){
     this.body = yield User.findBy("emailAddress",email);
 })
 
-router.post('/homes/:id',function*(){
-    var id = this.params.id;
-    var home = this.request.body;
-    this.body = yield Home.save(home)
+router.get('/floorplans', function*(){
+    this.body = yield FloorPlan.all();
+    
 })
 
-router.get('/homes/address/:address',function*(){
-    var address = decodeURI(this.params.address)
-    this.body = yield Home.findBy("address",address);
+router.get('/floorplans/:id',function*(){
+    var id =  this.params.id;
+    this.body = yield FloorPlan.find(id)
 })
 
-router.get('/session',function*(){
-    this.body = session
+router.post('/floorplans',function*(){
+    var floorplan = this.request.body;
+    this.body = yield FloorPlan.save(floorplan)
+})
+
+
+
+router.delete('/session/:key',function*(){
+    console.log(session)
+    var key = this.params.key;
+    var user = session[key]
+    user.key = null;
+    User.save(user)
+    delete session[key]
+    console.log(session)
 })
 
 router.post('/login',function*(){

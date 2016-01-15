@@ -20,15 +20,6 @@ window.app.service('AuthService', function($http, $rootScope, $location, UserSer
         console.log(reason)
       }
     }
-  
-  $rootScope.logout = function(){
-    killServerSession().then(function(){
-      window.currentUser = null;
-      sessionStorage.removeItem('session')
-    })
-    
-    
-  }
     
   this.isLoggedIn = function(){
     if( window.currentUser == undefined){
@@ -44,9 +35,8 @@ window.app.service('AuthService', function($http, $rootScope, $location, UserSer
     }
   }
   
-  var killServerSession = function(){
-    var parsedSession = JSON.parse(sessionData)
-    $http.delete(BaseURL + '/session', parsedSession.key)
+  this.killServerSession = function(){
+    return $http.delete(BaseURL + '/session/' + window.currentUser.key)
   }
   
   

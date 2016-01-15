@@ -10,16 +10,16 @@ Home.getCustomers = function *(id){
 
 
 
-Home.instance = function(address,price,builder,floorplan,ECD){
-  return new HomeSchema(address,price,builder,floorplan,ECD)
+Home.instance = function(address,price,builder,floorplanId,ECD){
+  return new HomeSchema(address,price,builder,floorplanId,ECD)
 }
 
-function HomeSchema(address,price,builder,floorplan,ECD){
+function HomeSchema(address,price,builder,floorplanId,ECD){
     this.id = null
     this.address = address
     this.price = price
     this.builder = builder
-    this.floorplan = floorplan
+    this.floorplanId = floorplanId
     this.ECD = ECD
     this.progress = {
       brickWork : false,
