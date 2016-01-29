@@ -1,4 +1,5 @@
-<div class="row" >
+<div = "container-fluid">
+    <div class="row" >
 
             <div class="col-md-8">
                 <img height = "400" width = "800" class="img-responsive" src= {{home.image}} alt="">
@@ -9,18 +10,23 @@
                 <p> {{home.description}}</p>
                 <h3>Home Details</h3>
                 <ul>
-                    <li>Address: {{home.address}}</li>
+                    <li>Address: {{home.address.streetAddress}} {{home.address.city}}, {{home.address.state}},{{home.address.zip}}</li>
                     <li>Price: {{home.price}}</li>
                     <li>Builder: {{home.builder.firstName}} {{home.builder.lastName}}</li>
                     <li>FloorPlan: {{home.floorplan}}</li>
                     <li>Estimated completion date: {{home.ECD}}</li>
                 </ul>
+                <div id = "map" class="row">
+             <div class="col-md-12">
+              <div class="container-fluid">
+                <ng-map center= "{{home.address.streetAddress}} {{home.address.city}}, {{home.address.state}},{{home.address.zip}} " zoom="18">
+                    <marker position = "{{home.address.streetAddress}} {{home.address.city}}, {{home.address.state}},{{home.address.zip}} "></marker>
+                    
+                </ng-map>
+              </div>
+             </div>
+ </div>
             </div>
  </div>
- <div id = "map" class="row">
-     <div class="col-md-4">
-        <div class="container-fluid">
-        <ng-map center="150 Klattenhoff ln Hutto,TX 78634"></ng-map>
-      </div>
-  </div>
- </div>
+ 
+</div>

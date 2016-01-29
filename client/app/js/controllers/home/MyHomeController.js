@@ -3,21 +3,37 @@
 /**
  * @ngInject
  */
-function MyHomeController($scope,HomeService,$rootScope,NgMap) {
+function MyHomeController($scope,HomeService,$rootScope,NgMap,FloorPlanService) {
 
   $scope.currentUser = window.currentUser
-  
+  $scope.home = {}
+  console.log($scope.currentUser)
 
-  HomeService.getMainImage(window.currentUser.homeId).then(function(data){
-      $scope.home.image = data.$value
-      console.log(data)
-  })
+  
     
   HomeService.find(window.currentUser.homeId).then(function(promise){
     window.currentUser.home = promise.data
     console.log(promise)
     $scope.home = promise.data
     
+  })
+  
+  HomeService.getImage(window.currentUser.homeId).then(function(data){
+      if(data.$value != null){
+        $scope.home.image = data.$value
+      }else{
+        FloorPlanService.getImage($scope.home.floorplanId).then(function(data){
+          $scope.home.image = data.$value
+          console.log("default imag")
+          FloorPlanService.find($scope.home.floorplanId).then(function(data){
+            console.log(data)
+          })
+            
+          
+        })
+      }
+      
+      
   })
   
   NgMap.getMap().then(function(map) {

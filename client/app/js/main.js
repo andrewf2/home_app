@@ -28,12 +28,15 @@
   
   window.app.constant('BaseURL', new String());
   
+  window.app.constant('FireBaseURL', "https://homeownercenter.firebaseio.com/");
+  
   
   
   window.app.run(function($rootScope,$location,AuthService,UserService,CacheService,$q){
     
      $rootScope.logout = function(){
-       AuthService.killServerSession().then(function(){
+       AuthService.killServerSession().then(function(user){
+         console.log(user)
          window.currentUser = null;
          sessionStorage.removeItem('session')
          $location.path('/')
@@ -44,8 +47,15 @@
      
      $rootScope.company = {
        name:"Centurion",
-       address:"4507 17th street",
-       phone_number:"2082066079"
+       address:{
+         streetAddress:"4507 17th street",
+         state:"ID",
+         city:"Idaho Falls",
+         zip:83440
+         
+       },
+       phone:"(208) 206-6079",
+       email:"CenturionBuilders@gmail.com"
      };
      
      $rootScope.$on('$routeChangeStart', function (event) {

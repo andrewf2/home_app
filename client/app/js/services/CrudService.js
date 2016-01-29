@@ -32,4 +32,7 @@ function CrudService($http,$firebaseObject,BaseURL){
   
   
 }
+
+
+
 window.app.service('CrudService', CrudService)

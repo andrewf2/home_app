@@ -4,7 +4,25 @@ var User = require("./model/user.js")()
 var Home = require("./model/home.js")()
 var FloorPlan = require('./model/floorplan.js')()
 
-
+  var address1 = {
+      streetAddress: "311 Bluebell st",
+      city:"Rexburg",
+      state:"Idaho",
+      zip:"83440"
+  }
+  var address2 = {
+      streetAddress: "55 Main st",
+      city:"Rexburg",
+      state:"Idaho",
+      zip:"83440"
+  }
+  var address3 = {
+      streetAddress: "101 maple street",
+      city:"Sugar City",
+      state:"Idaho",
+      zip:"83448"
+  }
+  
 
   var customer = User.instance("John","Doe","johndoe@gmail.com",'dc03d39f-1234-4b9d-90b4-ec3e8334d1a3',"password",'customer')
   customer.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b1'
@@ -21,13 +39,13 @@ var FloorPlan = require('./model/floorplan.js')()
   var customer4 = User.instance("Ben's","Wife","benwife@gmail.com",'dc03d39f-7d0e-4b9d-1234-ec3e8334d1a2',"password","customer")
   customer4.id = 'dc03d39f-7d0e-4b9d-90b4-ec3e8334d1b5'
   
-  var house = Home.instance("311 Bluebell st",200000,builder,'dc03d789-123e-4b9d-90b4-ec3e8334d1b5','2016-05-31')
+  var house = Home.instance(address1,200000,builder,'dc03d789-123e-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house.id = 'dc03d39f-1234-4b9d-90b4-ec3e8334d1a3'
   
-  var house2 = Home.instance('55 Main st',250000,builder,'dc03d456-4567-4b9d-90b4-ec3e8334d1b5','2016-05-31')
+  var house2 = Home.instance(address2,250000,builder,'dc03d456-4567-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house2.id = 'dc03d39f-7d0e-1324-90b4-ec3e8334d1a1'
   
-  var house3 = Home.instance("101 maple street",500000,builder,'dc03d123-7890-4b9d-90b4-ec3e8334d1b5','2016-05-31')
+  var house3 = Home.instance(address3,500000,builder,'dc03d123-7890-4b9d-90b4-ec3e8334d1b5','2016-05-31')
   house3.id = 'dc03d39f-7d0e-4b9d-1234-ec3e8334d1a2'
   
   var floorplan1 = FloorPlan.instance("Sienna",270000,2400,4,2)
