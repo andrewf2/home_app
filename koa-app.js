@@ -121,6 +121,12 @@ router.post('/login', function*() {
     this.body = user
 })
 
+router.delete('/homes/:id', function*(){
+    var id = this.params.id
+    var response = yield Home.destroy(id)
+    this.body = response
+})
+
 app.use(router.routes());
 
 module.exports = app;

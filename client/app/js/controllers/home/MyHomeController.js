@@ -24,7 +24,7 @@ function MyHomeController($scope,HomeService,$rootScope,NgMap,FloorPlanService) 
       }else{
         FloorPlanService.getImage($scope.home.floorplanId).then(function(data){
           $scope.home.image = data.$value
-          console.log("default imag")
+          console.log("default image")
           FloorPlanService.find($scope.home.floorplanId).then(function(data){
             console.log(data)
           })
