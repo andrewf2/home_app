@@ -127,6 +127,12 @@ router.delete('/homes/:id', function*(){
     this.body = response
 })
 
+router.delete('/users/:id', function*(){
+    var id = this.params.id
+    var response = yield User.destroy(id)
+    this.body = response
+})
+
 app.use(router.routes());
 
 module.exports = app;

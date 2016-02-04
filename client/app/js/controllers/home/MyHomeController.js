@@ -15,10 +15,7 @@ function MyHomeController($scope,HomeService,$rootScope,NgMap,FloorPlanService) 
     window.currentUser.home = promise.data
     console.log(promise)
     $scope.home = promise.data
-    
-  })
-  
-  HomeService.getImage(window.currentUser.homeId).then(function(data){
+    HomeService.getImage(window.currentUser.homeId).then(function(data){
       if(data.$value != null){
         $scope.home.image = data.$value
       }else{
@@ -28,13 +25,12 @@ function MyHomeController($scope,HomeService,$rootScope,NgMap,FloorPlanService) 
           FloorPlanService.find($scope.home.floorplanId).then(function(data){
             console.log(data)
           })
-            
-          
         })
       }
-      
-      
+    })
   })
+  
+  
   
   NgMap.getMap().then(function(map) {
     console.log(map.getCenter());
