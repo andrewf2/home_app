@@ -102,6 +102,11 @@ router.get('/floorplans/:id', function*() {
     this.body = yield FloorPlan.find(id)
 })
 
+router.post('/floorplans/new', function*() {
+    var floorplan = this.request.body;
+    this.body = yield FloorPlan.create(floorplan)
+})
+
 router.post('/floorplans', function*() {
     var floorplan = this.request.body;
     this.body = yield FloorPlan.save(floorplan)
@@ -130,6 +135,12 @@ router.delete('/homes/:id', function*(){
 router.delete('/users/:id', function*(){
     var id = this.params.id
     var response = yield User.destroy(id)
+    this.body = response
+})
+
+router.delete('/floorplans/:id',function*(){
+    var id = this.params.id
+    var response = yield FloorPlan.destroy(id)
     this.body = response
 })
 
