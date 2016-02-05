@@ -3,12 +3,12 @@ var r = require('rethinkdbdash')({
 });
 
 module.exports = function(){
-    
+    var dbName = 'home_owner_center';
   return  {
-    db:r.db('home_owner_center'),
+    db:r.db(dbName),
     
     all: function*(callback){
-      var query = yield r.db('home_owner_center').table(this.tableName).run();
+      var query = yield r.db(dbName).table(this.tableName).run();
       return query;
     
       
@@ -17,7 +17,7 @@ module.exports = function(){
    find: function*(id){
      
      if(id != null){
-        var query = yield r.db('home_owner_center').table(this.tableName).filter({
+        var query = yield r.db(dbName).table(this.tableName).filter({
        id: id
      }).run();
       return query[0]
@@ -34,22 +34,22 @@ module.exports = function(){
      var queryObject = {}
      queryObject[attr] = val
      console.log(queryObject)
-     var query = yield r.db('home_owner_center').table(this.tableName).filter(queryObject).run();
+     var query = yield r.db(dbName).table(this.tableName).filter(queryObject).run();
      return query[0]
    },
    
    destroy: function(id){
-     return r.db('home_owner_center').table(this.tableName).get(id).delete().run();
+     return r.db(dbName).table(this.tableName).get(id).delete().run();
    },
    
    create: function(obj){
-     return r.db('home_owner_center').table(this.tableName).insert(obj).run();
+     return r.db(dbName).table(this.tableName).insert(obj).run();
    },
    
    join: function*(table){
     var tableName = this.tableName
-    var query = yield r.db('home_owner_center').table(tableName).concatMap(function(parent) {
-	  return r.db('home_owner_center').table(table).getAll(
+    var query = yield r.db(dbName).table(tableName).concatMap(function(parent) {
+	  return r.db(dbName).table(table).getAll(
 		parent("id"),
 		{ index:+"Id" }
 	    ).map(function(child) {
@@ -61,7 +61,7 @@ module.exports = function(){
    },
   
    save: function(obj){
-     return r.db('home_owner_center').table(this.tableName).filter({id:obj.id}).update(obj).run()
+     return r.db(dbName).table(this.tableName).filter({id:obj.id}).update(obj).run()
     
    }
    
