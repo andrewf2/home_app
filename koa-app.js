@@ -1,16 +1,16 @@
 'use strict';
-var koa = require('koa');
-var koaBody = require('koa-body')();
-var config = require('./config');
-var serve = require('koa-static');
-var router = require('koa-router')();
-var Home = require('./model/home.js')();
-var User = require('./model/user.js')();
-var FloorPlan = require('./model/floorplan.js')();
-var session = require('./auth/session.js')();
-var Auth = require('./auth/Auth.js')(session)
-var cors = require('koa-cors');
-var app = koa();
+var koa = require('koa'),
+koaBody = require('koa-body')(),
+config = require('./config'),
+serve = require('koa-static'),
+router = require('koa-router')(),
+Home = require('./model/home.js')(),
+User = require('./model/user.js')(),
+FloorPlan = require('./model/floorplan.js')(),
+session = require('./auth/session.js')(),
+Auth = require('./auth/Auth.js')(session),
+cors = require('koa-cors'),
+app = koa();
 
 app.use(cors());
 
