@@ -38,8 +38,6 @@ app.use(serve(__dirname + '/client/app'));
 
 router.get('/homes', function*() {
     var homes = yield Home.all()
-
-
     this.body = homes
 })
 
@@ -50,9 +48,7 @@ router.get('/homes/:id', function*() {
     console.log(home)
 })
 
-
-
-router.post('/homes/', function*() {
+router.post('/homes', function*() {
     var home = this.request.body;
     this.body = yield Home.save(home)
 })
@@ -62,12 +58,12 @@ router.get('/homes/address/:address', function*() {
     this.body = yield Home.findBy("address", address);
 })
 
-router.post('/users', function*() {
+router.put('/users/:id', function*() {
     var user = this.request.body;
     this.body = User.save(user)
 })
 
-router.post('/homes/new', function*() {
+router.post('/homes', function*() {
     var home = this.request.body
     console.log(home)
     this.body = yield Home.create(home);
@@ -82,7 +78,7 @@ router.get('/users/:id', function*() {
     this.body = yield User.find(id)
 })
 
-router.post('/users/new', function*() {
+router.post('/users', function*() {
     var user = this.request.body
     this.body = User.create(user);
 })
@@ -102,12 +98,12 @@ router.get('/floorplans/:id', function*() {
     this.body = yield FloorPlan.find(id)
 })
 
-router.post('/floorplans/new', function*() {
+router.post('/floorplans', function*() {
     var floorplan = this.request.body;
     this.body = yield FloorPlan.create(floorplan)
 })
 
-router.post('/floorplans', function*() {
+router.put('/floorplans/:id', function*() {
     var floorplan = this.request.body;
     this.body = yield FloorPlan.save(floorplan)
 })
@@ -122,7 +118,6 @@ router.post('/login', function*() {
     var loginPost = this.request.body;
     var creds = Auth.format(loginPost);
     var user = yield Auth.createSession(creds);
-    session[user.key] = user;
     this.body = user
 })
 
